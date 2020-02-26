@@ -51,43 +51,183 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 /*
  1)
  */
+struct GymPlan
+{
+    bool isMember = true;
+    int daysPerweek = 4;
 
+    struct Person
+    {
+        int age = 30;
+        int height = 6;
+    };
+
+    void goToGym(Person person);
+
+    Person gymPerson;
+};
 /*
  2)
  */
+struct DogWalks
+{
+    int dogBreed = 4;
+    int dogAge = 12;
 
+    struct DogWalksEach
+    {
+        int daysPerWeek = 3;
+        float milesPerWalk = 2.5;
+    };
+
+    void walkDog(DogWalksEach dogWalksEach);
+
+    DogWalksEach GreatDane;
+};
 /*
  3)
  */
+struct DjMix
+{
+    int Genre = 2;
+    int DjTimeHrs = 3;
 
+    struct DjStyle
+    {
+        bool isScratch = true;
+        bool isTechno = true;
+    };
+
+    void PlayDj(DjStyle djstyle);
+
+    DjStyle TechnoDj;
+};
 /*
  4)
  */
+struct KaratePractice
+{
+    int timeSlot = 1;
+    int location =4;
 
+    struct Student
+    {
+        int belt = 9;
+        int yearsInClub = 2;
+    };
+
+    void PracticeKarate(Student student);
+
+    Student me;
+};
 /*
  5)
  */
+struct DrivingLesson
+{
+    bool isCar = true;
+    int location = 1;
 
+    struct Person
+    {
+        bool isFirstLesson = false;
+        bool hasStudied = true;
+    };
+
+    void TakeLesson(Person person);
+
+    Person gez;
+};
 /*
  6)
  */
+struct CareForFish
+{
+    int dayOfWeek = 2;
+    float time = 12;
 
+    struct FishDetails
+    {
+        bool isMarine = true;
+        bool isTropical = false;
+        int tankSize = 100;
+    };
+
+    void AttendFish(FishDetails fishDetails);
+
+    FishDetails tigerFish;
+};
 /*
  7)
  */
+struct MakeSalad
+{
+    bool haveBowl = true;
+    int numberOfFruit = 4;
 
+    struct MixSalad
+    {
+        bool hasSpoon = true;
+        bool hasStrawberrys = false;
+    };
+
+    void PrepareSalad(MixSalad mixSalad);
+
+    MixSalad celerySalad;
+};
 /*
  8)
  */
+struct MakeWebsite
+{
+    int type = 1;
+    int size = 4;
 
+    struct Company
+    {
+        int users = 1;
+        double customers = 100000;
+    };
+
+    void MakeSite(Company company);
+
+    Company gcom;
+};
 /*
  9)
  */
+struct PlaneJourney
+{
+    int depatureLocation = 4;
+    int arrivalLocation = 1;
 
+    struct Passenger
+    {
+        bool isFrequentFlyer = true;
+    };
+
+    void Travel(Passenger passenger);
+
+    Passenger me;
+};
 /*
  10)
  */
+struct Party
+{
+    int location = 1;
+    int time = 8;
 
+    struct People
+    {
+        int amount = 20;
+        bool invitesFinished = true;
+    };
+
+    void HaveParty(People people);
+
+    People all;
+};
 #include <iostream>
 int main()
 {
