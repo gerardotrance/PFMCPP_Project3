@@ -54,7 +54,9 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
 struct GymPlan
 {
     bool isMember = true;
-    int daysPerweek = 4;
+    int daysPerWeek = 4;
+    
+    unsigned int numMembers = 9;
 
     struct Person
     {
@@ -74,6 +76,8 @@ struct DogWalks
     int dogBreed = 4;
     int dogAge = 12;
 
+    unsigned int dogsWalked = 22;
+
     struct DogWalksEach
     {
         int daysPerWeek = 3;
@@ -82,15 +86,17 @@ struct DogWalks
 
     void walkDog(DogWalksEach dogWalksEach);
 
-    DogWalksEach GreatDane;
+    DogWalksEach greatDane;
 };
 /*
  3)
  */
 struct DjMix
 {
-    int Genre = 2;
-    int DjTimeHrs = 3;
+    int genre = 2;
+    int djTimeHrs = 3;
+
+    unsigned int timesPlayed = 4;
 
     struct DjStyle
     {
@@ -98,9 +104,9 @@ struct DjMix
         bool isTechno = true;
     };
 
-    void PlayDj(DjStyle djstyle);
+    void playDj(DjStyle djstyle);
 
-    DjStyle TechnoDj;
+    DjStyle technoDj;
 };
 /*
  4)
@@ -110,13 +116,15 @@ struct KaratePractice
     int timeSlot = 1;
     int location =4;
 
+    unsigned int beltsPassed = 8;
+
     struct Student
     {
         int belt = 9;
         int yearsInClub = 2;
     };
 
-    void PracticeKarate(Student student);
+    void practiceKarate(Student student);
 
     Student me;
 };
@@ -128,13 +136,15 @@ struct DrivingLesson
     bool isCar = true;
     int location = 1;
 
+    unsigned int lessonsTaken  = 7;
+
     struct Person
     {
         bool isFirstLesson = false;
         bool hasStudied = true;
     };
 
-    void TakeLesson(Person person);
+    void takeLesson(Person person);
 
     Person gez;
 };
@@ -145,6 +155,8 @@ struct CareForFish
 {
     int dayOfWeek = 2;
     float time = 12;
+
+    unsigned int fishTanks = 12;
 
     struct FishDetails
     {
@@ -165,13 +177,15 @@ struct MakeSalad
     bool haveBowl = true;
     int numberOfFruit = 4;
 
+    unsigned int saladsMade = 22;
+
     struct MixSalad
     {
         bool hasSpoon = true;
         bool hasStrawberrys = false;
     };
 
-    void PrepareSalad(MixSalad mixSalad);
+    void prepareSalad(MixSalad mixSalad);
 
     MixSalad celerySalad;
 };
@@ -182,6 +196,8 @@ struct MakeWebsite
 {
     int type = 1;
     int size = 4;
+    
+    unsigned int customersServed = 30;
 
     struct Company
     {
@@ -201,12 +217,14 @@ struct PlaneJourney
     int depatureLocation = 4;
     int arrivalLocation = 1;
 
+    unsigned int timesOnPLane = 6;
+
     struct Passenger
     {
         bool isFrequentFlyer = true;
     };
 
-    void Travel(Passenger passenger);
+    void travel(Passenger passenger);
 
     Passenger me;
 };
@@ -217,6 +235,8 @@ struct Party
 {
     int location = 1;
     int time = 8;
+    
+    unsigned int partiesHad = 0;
 
     struct People
     {
@@ -224,7 +244,7 @@ struct Party
         bool invitesFinished = true;
     };
 
-    void HaveParty(People people);
+    void haveParty(People people);
 
     People all;
 };
