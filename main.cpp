@@ -53,7 +53,7 @@ struct CarWash            //1) a U.D.T. with a random number of member variables
  */
 struct GymPlan
 {
-    bool isMember = true;
+    bool member = true;
     int daysPerWeek = 4;
     
     unsigned int numMembers = 9;
@@ -71,30 +71,30 @@ struct GymPlan
 /*
  2)
  */
-struct DogWalks
+struct DogWalkerPlan
 {
-    int dogBreed = 4;
-    int dogAge = 12;
+    int daysPerWeek = 3;
+    float milesPerWalk = 2.5;
 
-    unsigned int dogsWalked = 22;
+    unsigned int timesWalked = 22;
 
-    struct DogWalksEach
+    struct Dog
     {
-        int daysPerWeek = 3;
-        float milesPerWalk = 2.5;
+        int dogBreed = 4;
+        int dogAge = 12;
     };
 
-    void walkDog(DogWalksEach dogWalksEach);
+    void walkDog(Dog dog);
 
-    DogWalksEach greatDane;
+    Dog greatDane;
 };
 /*
  3)
  */
 struct DjMix
 {
-    int genre = 2;
-    int djTimeHrs = 3;
+    int timeSlot = 2;
+    int slotHrs = 3;
 
     unsigned int timesPlayed = 4;
 
@@ -116,7 +116,7 @@ struct KaratePractice
     int timeSlot = 1;
     int location =4;
 
-    unsigned int beltsPassed = 8;
+    unsigned int numberOfStudents = 8;
 
     struct Student
     {
@@ -136,7 +136,7 @@ struct DrivingLesson
     bool isCar = true;
     int location = 1;
 
-    unsigned int lessonsTaken  = 7;
+    unsigned int numberOfStudents  = 7;
 
     struct Person
     {
@@ -151,10 +151,10 @@ struct DrivingLesson
 /*
  6)
  */
-struct CareForFish
+struct FishCareRoutine
 {
     int dayOfWeek = 2;
-    float time = 12;
+    float timeOfDay = 12;
 
     unsigned int fishTanks = 12;
 
@@ -172,22 +172,23 @@ struct CareForFish
 /*
  7)
  */
-struct MakeSalad
+struct SaladPrepList
 {
     bool haveBowl = true;
-    int numberOfFruit = 4;
+    bool haveSpoon = true;
 
-    unsigned int saladsMade = 22;
+    unsigned int time  = 12;
 
-    struct MixSalad
+    struct Ingredients
     {
-        bool hasSpoon = true;
-        bool hasStrawberrys = false;
+        bool strawberry = true;
+        bool celery = false;
+        int extraFruit = 4;
     };
 
-    void prepareSalad(MixSalad mixSalad);
+    void prepareSalad(Ingredients);
 
-    MixSalad celerySalad;
+    Ingredients celerySalad;
 };
 /*
  8)
@@ -212,16 +213,17 @@ struct MakeWebsite
 /*
  9)
  */
-struct PlaneJourney
+struct JourneyPlan
 {
     int depatureLocation = 4;
     int arrivalLocation = 1;
 
-    unsigned int timesOnPLane = 6;
+    unsigned int availableSeats = 6;
 
     struct Passenger
     {
         bool isFrequentFlyer = true;
+        int seatNumber = 22;
     };
 
     void travel(Passenger passenger);
@@ -236,12 +238,12 @@ struct Party
     int location = 1;
     int time = 8;
     
-    unsigned int partiesHad = 0;
+    unsigned int previousParties = 0;
 
     struct People
     {
         int amount = 20;
-        bool invitesFinished = true;
+        bool specialBooth = true;
     };
 
     void haveParty(People people);
