@@ -165,7 +165,7 @@ struct CareForFish
         int tankSize = 100;
     };
 
-    void AttendFish(FishDetails fishDetails);
+    void attendFish(FishDetails fishDetails);
 
     FishDetails tigerFish;
 };
@@ -205,7 +205,7 @@ struct MakeWebsite
         double customers = 100000;
     };
 
-    void MakeSite(Company company);
+    void makeSite(Company company);
 
     Company gcom;
 };
