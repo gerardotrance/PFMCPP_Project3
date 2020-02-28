@@ -6,23 +6,28 @@ Video:  Chapter 2 Part 5
  Create a branch named Part1
  
  1) write 10 user-defined types, each with a random number of member variables
-    try to make the member variables have names that are related to the user-defined type.
+    make the member variables have names that are related to type of work the UDT would perform.
+    see the example below for clarity on this instruction
  
  2) give the member variables relevant data types
  
- 3) add a couple member functions.  
+ 3) add at least 2 member functions to each of your 10 types.  
     make the function parameter list for those member functions use some of your User-Defined Types
+    You'll write definitions in part2 for these functions
+    you'll call each of these functions in part3
  
- 4) make 2 of the 10 user-defined types be nested class
+ 4) make 2 of the 10 user-defined types have a nested class.  this nested class also needs member functions.
  
- 5) One of your UDTs should only use UDTs for its member variable types.   
+ 5) One of your 10 UDTs should only use UDTs for its member variable types.   
      No primitives allowed!
  
  6) After you finish defining each type, click the [run] button.  Clear up any errors or warnings as best you can.
  
  Commit your changes by clicking on the Source Control panel on the left, entering a message, and click [Commit and push].
  
- Send me the the link to your repl.it in a DM on Slack
+ Make a pull request after you make your first commit and pin the pull request link to our DM thread.
+
+send me a DM to check your pull request
 
  Wait for my code review.
  */
@@ -30,21 +35,31 @@ Video:  Chapter 2 Part 5
 /*
  example:
  */
-struct CarWash            //1) a U.D.T. with a random number of member variables
+//1) a U.D.T. with a random number of member variables
+struct CarWash           
 {
+    //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
     int numSponges = 3;
-    double amountOfSoapUsedPerCar = 2.6; //2) relevant data types
+    double amountOfSoapUsedPerCar = 2.6;
     unsigned int numCarsProcessed = 0;
     
     struct Car                             //4) nested class
     {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
         bool isAPickupTruck = false;
-        float gasMileage = 26.2f;        //2) relevant data types
+        float gasMileage = 26.2f;        
+
+        //3) a member function whose parameter has a default value.
+        //the parameter name is related to the work the function will perform.
+        void fillTank(double fuelAmountInGallons = 2.0);   
     };
     
-    void washAndWaxCar( Car car );         //3) member function with a user-defined type as the parameter.  The user-defined type parameter happens to be the nested class.
+    //3) member function with a user-defined type as the parameter.
+    //The user-defined type parameter happens to be the nested class.
+    void washAndWaxCar( Car car );           
     
-    Car myCar;  //5) a member variable whose type is a UDT.
+    //5) a member variable whose type is a UDT.
+    Car myCar;  
 };
 
 
