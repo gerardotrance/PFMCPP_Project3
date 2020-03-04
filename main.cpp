@@ -79,7 +79,6 @@ struct GymPlan
         int height = 6;
     
     void enterMember(int memberNumber);
-
     };
     
     void goToGym(Person person);
@@ -103,7 +102,6 @@ struct DogWalkerPlan
 
     void washDog(int dogSoapType = 4);
     };
-    
     void walkDog(Dog dog);
 
     Dog greatDane;
@@ -125,6 +123,7 @@ struct DjMix
     void switchOnSystem(bool on = true);
     };
     void playDj(DjStyle djstyle);
+    
     DjStyle technoDj;
 };
 /*
