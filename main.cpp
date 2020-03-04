@@ -77,10 +77,13 @@ struct GymPlan
     {
         int age = 30;
         int height = 6;
+    
+    void enterMember(int memberNumber);
+
     };
-
+    
     void goToGym(Person person);
-
+    
     Person gymPerson;
 };
 /*
@@ -97,8 +100,10 @@ struct DogWalkerPlan
     {
         int dogBreed = 4;
         int dogAge = 12;
-    };
 
+    void washDog(int dogSoapType = 4);
+    };
+    
     void walkDog(Dog dog);
 
     Dog greatDane;
@@ -117,10 +122,9 @@ struct DjMix
     {
         bool isScratch = true;
         bool isTechno = true;
+    void switchOnSystem(bool on = true);
     };
-
     void playDj(DjStyle djstyle);
-
     DjStyle technoDj;
 };
 /*
@@ -137,6 +141,8 @@ struct KaratePractice
     {
         int belt = 9;
         int yearsInClub = 2;
+        
+        void prepareGrading(bool prepared = true);
     };
 
     void practiceKarate(Student student);
@@ -157,6 +163,8 @@ struct DrivingLesson
     {
         bool isFirstLesson = false;
         bool hasStudied = true;
+        
+        void prepareVehicle(bool keyTurned = true);
     };
 
     void takeLesson(Person person);
@@ -178,6 +186,8 @@ struct FishCareRoutine
         bool isMarine = true;
         bool isTropical = false;
         int tankSize = 100;
+
+        void prepareEquiptment(int brushType = 1);
     };
 
     void attendFish(FishDetails fishDetails);
@@ -199,6 +209,8 @@ struct SaladPrepList
         bool strawberry = true;
         bool celery = false;
         int extraFruit = 4;
+
+        void mixIngredients();
     };
 
     void prepareSalad(Ingredients);
@@ -219,6 +231,8 @@ struct MakeWebsite
     {
         int users = 1;
         double customers = 100000;
+
+        void registerCustomer();
     };
 
     void makeSite(Company company);
@@ -239,6 +253,9 @@ struct JourneyPlan
     {
         bool isFrequentFlyer = true;
         int seatNumber = 22;
+
+        void sitPassanger();
+
     };
 
     void travel(Passenger passenger);
@@ -259,6 +276,8 @@ struct Party
     {
         int amount = 20;
         bool specialBooth = true;
+
+        void seatCustomers();
     };
 
     void haveParty(People people);
