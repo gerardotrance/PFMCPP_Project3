@@ -78,7 +78,7 @@ struct GymPlan
         int age = 30;
         int height = 6;
     
-    void enterMember(int memberNumber);
+        void enterMember(int memberNumber);
     };
     
     void goToGym(Person person);
@@ -100,7 +100,7 @@ struct DogWalkerPlan
         int dogBreed = 4;
         int dogAge = 12;
 
-    void washDog(int dogSoapType = 4);
+        void washDog(int dogSoapType = 4);
     };
     void walkDog(Dog dog);
 
@@ -120,7 +120,7 @@ struct DjMix
     {
         bool isScratch = true;
         bool isTechno = true;
-    void switchOnSystem(bool on = true);
+        void switchOnSystem(bool on = true);
     };
     void playDj(DjStyle djstyle);
     
