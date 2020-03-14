@@ -18,13 +18,24 @@ struct Person
     float hairLength;
     float GPA;
     unsigned int SATScore;
+    int distanceTraveled;
 
     void run(int howFast, bool startWithLeftFoot);
 };
 
 void Person::run(int howFast, bool startWithLeftFoot)
 {
-
+    if(startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        void rightFoot.stepForward();
+        void leftFoot.stepForward();
+    }
+    int distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
 }
 
 
