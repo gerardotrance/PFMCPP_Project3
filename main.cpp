@@ -100,7 +100,7 @@ struct GymPlan
     Membership enter, decline;
 };
 
-void GymPlan::goToGym(bool member, int)
+void GymPlan::goToGym(bool, int)
 {
     if(member == true)
     {
@@ -137,7 +137,7 @@ struct DogWalkerPlan
 
     Dog walk, wash;
 };
-void DogWalkerPlan::exerciseDog(int, bool dogClean)
+void DogWalkerPlan::exerciseDog(int, bool)
 {
     if(dogClean == true)
     {
@@ -173,7 +173,7 @@ struct DjMix
     
     PlayButton mix, tempo ;
 };
-void DjMix::playDj(int, bool inSync)
+void DjMix::playDj(int, bool)
 {
     if(inSync == true)
     {
@@ -211,7 +211,7 @@ struct KaratePractice
 
     StudentLesson karate, boxing;
 };
-void KaratePractice::practiceKarate(int, int, bool isBoxing)
+void KaratePractice::practiceKarate(int, int, bool)
 {
     if(isBoxing == false)
     {
@@ -248,7 +248,7 @@ struct DrivingLesson
 
     Exelerater fast, slow;
 };
-void DrivingLesson::takeLesson(int, bool hasKey)
+void DrivingLesson::takeLesson(int, bool)
 {
     if(hasKey == true)
     {
@@ -322,7 +322,7 @@ struct SaladPrepList
 
     Chef spoon, whisk;
 };
-void SaladPrepList::prepareSalad(int, bool haveSpoon)
+void SaladPrepList::prepareSalad(int, bool)
 {
     if(haveBowl == true)
     {
@@ -397,7 +397,7 @@ struct JourneyPlan
 
     Passenger greet, appologise;
 };
-void JourneyPlan::travel(int, int, bool availableSeats)
+void JourneyPlan::travel(int, int, bool)
 {
     if(availableSeats == true)
     {
@@ -436,7 +436,7 @@ struct Party
     
 };
 
-void Party::greetCustomers(int location, int time)
+void Party::greetCustomers(int, int)
 {
     if(booking == true)
     {
