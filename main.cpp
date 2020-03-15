@@ -443,3 +443,4 @@ void Party::greetCustomers(int location, int time)
         evening.customerWait();
     }
 }
+
