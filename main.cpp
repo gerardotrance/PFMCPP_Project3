@@ -37,7 +37,6 @@ struct Person
 };
 
 void Person::run(int, bool startWithLeftFoot)
-
 {
     if(startWithLeftFoot == true)
     {
@@ -75,378 +74,232 @@ send me a DM to check your pull request
 /*
  1)
  */
+
+ /*
+GymPlan:
+    Has list of people signed up
+    can add people to list
+    can remove people from list
+ */
+
+#include <vector>
+
 struct GymPlan
 {
-    bool member = true;
     int daysPerWeek = 4;
+    bool canAccessPool = true;
+    bool canBringGuests = true;
+    bool canAccessSpa = true;
     
-    unsigned int numMembers = 9;
-
-    struct Membership
-    {
-        
-        void enterPerson()
-        {
-
-        }
-        void declinePerson()
-        {
-
-        }
-    };
-    
-    void goToGym(bool member, int daysPerWeek);
-    
-    Membership enter, decline;
+    std::vector<Person> members; //Has list of people signed up
+    void addMember(Person p);       //can add people to list
+    void removeMember(Person p);    //can remove people from list
 };
 
-void GymPlan::goToGym(bool, int)
+void GymPlan::addMember(Person)
 {
-    if(member == true)
-    {
-        enter.enterPerson();
-    }
-    else
-    {
-        decline.declinePerson();
-    }
+   
 }
+void GymPlan::removeMember(Person)
+{
+    
+}
+
 /*
  2)
+
+times walked per week
+Notifies walker to start dog walk
+
+can either jog with the dogs or just walk them
+has a list of dogs to walk
+option to feed dog
+
+ 
  */
+
+struct Dog
+{
+    bool needsFeeding = false;
+};
+
+
 struct DogWalkerPlan
 {
-    int daysPerWeek = 3;
-    float milesPerWalk = 2.5;
-    bool dogClean = true;
-    unsigned int timesWalked = 22;
-
-    struct Dog
-    {
-        void walkDog()
-        {
-
-        }
-
-        void washDog()
-        {
-
-        }
-    };
-    void exerciseDog(int breed, bool dogClean);
-
-    Dog walk, wash;
+    //times walked per week
+    int timesWalkedWeekly = 1;
+    //can either jog with the dogs or just walk them
+    bool involvesJogging = true;
+    
+    std::vector<Dog> dogsToWalk; //has a list of dogs to walk
+    
+    //Notifies walker to start dog walk
+    void notifyWalker();
+    
+    //option to feed dog
+    bool shouldFeedDogs = true;
+    void feedDog(int whichDogToFeed);
+    void feedAllDogs();
 };
-void DogWalkerPlan::exerciseDog(int, bool)
+void DogWalkerPlan::feedDog(int)
 {
-    if(dogClean == true)
-    {
-        walk.walkDog();
-    }
-    else 
-    {
-        wash.washDog();
-    }
+
+}
+void DogWalkerPlan::feedAllDogs()
+{
+
 }
 /*
  3)
+3 things it can do:
+    1) play
+    2) stop
+    3) sync tempo
+
+5 properties:
+    1)is edm
+    2)is rock
+    3)is hiphop
+    4)tempo
+    5)key
  */
 struct DjMix
 {
-    bool inSync = true;
-    int slotHrs = 3;
-
-    unsigned int timesPlayed = 4;
-
-    struct PlayButton
-    {
-        void pressPlay()
-        {
-
-        }
-        void pressTempo()
-        {
-
-        }
-    };
-    void playDj(int slotHrs, bool inSync);
     
-    PlayButton mix, tempo ;
 };
-void DjMix::playDj(int, bool)
-{
-    if(inSync == true)
-    {
-        mix.pressPlay();
-    }
-    else
-    {
-        tempo.pressTempo();
-    }
-}
+
 /*
  4)
+ 3 things it can do:
+    1)start practice
+    2)end practice
+    3)update belt
+
+5 properties:
+    1)is blackbelts
+    2)is whitebelt
+    3)is long session
+    4)is intro
+    5)location number
  */
 struct KaratePractice
 {
-    int timeSlot = 1;
-    int location =4;
-    bool isBoxing = false;
-
-    unsigned int numberOfStudents = 8;
-
-    struct StudentLesson
-    {
-     void takeLesson()
-     {
-
-     }
-     void posponeLesson()
-     {
-
-     }   
-    };
-
-    void practiceKarate(int timeSlot, int location, bool isBoxing);
-
-    StudentLesson karate, boxing;
+    
 };
-void KaratePractice::practiceKarate(int, int, bool)
-{
-    if(isBoxing == false)
-    {
-        karate.takeLesson();
-    }
-    else
-    {
-        boxing.posponeLesson();
-    }
-}
 /*
  5)
+3 things it can do:
+    1)start lesson
+    2)end lesson
+    3)pass student
+
+5 properties:
+    1)is car
+    2)is motorbike
+    3)is first lesson
+    4)is last lesson
+    5)is motorway special course
  */
 struct DrivingLesson
 {
-    bool hasKey = true;
-    int location = 1;
-
-    unsigned int numberOfStudents  = 7;
-
-    struct Exelerater
-    {
-       void drive()
-       {
-
-       } 
-       void reverse()
-       {
-
-       }
-    };
-
-    void takeLesson(int location, bool hasKey);
-
-    Exelerater fast, slow;
+    
 };
-void DrivingLesson::takeLesson(int, bool)
-{
-    if(hasKey == true)
-    {
-        fast.drive();
-    }
-    else
-    {
-        slow.reverse();
-    }
-}
+
 /*
  6)
+3 things it can do:
+    1)feed fish
+    2)clean fish
+    3)special full service
+
+5 properties:
+    1)is marine
+    2)is tropical
+    3)is pond
+    4)is coral
+    5)is special
  */
 struct FishCareRoutine
 {
-    int dayOfWeek = 2;
-    float timeOfDay = 12;
-
-    unsigned int fishTanks = 12;
-
-    struct FishDetails
-    {
-        void brush()
-        {
-
-        }
-        void fishFood()
-        {
-
-        }
-    };
-
-    void attendFish(int dayOfWeek);
-
-    FishDetails clean, feed;
+    
 };
-void FishCareRoutine::attendFish(int)
-{
-    if(dayOfWeek == 2)
-    {
-        clean.brush();
-    }
-    else
-    {
-        feed.fishFood();
-    }
-}
+
 /*
  7)
+3 things it can do:
+    1)prepare salad
+    2)make salad
+    3)serve salad
+
+5 properties:
+    1)is vegan
+    2)has nuts
+    3)contains meat
+    4)bowl size number
+    5)dressing type
  */
 struct SaladPrepList
 {
-    bool haveBowl = true;
-    bool haveSpoon = true;
-
-    int time  = 12;
-
-    struct Chef
-    { 
-
-        void stirFast()
-        {
-
-        }
-        void stirSlow()
-        {
-
-        }
-    };
-    void prepareSalad(int time, bool haveSpoon);
-
-    Chef spoon, whisk;
+   
 };
-void SaladPrepList::prepareSalad(int, bool)
-{
-    if(haveBowl == true)
-    {
-        spoon.stirFast();
-    }
-    else
-    {
-        whisk.stirSlow();
-    }
-}
+
 /*
  8)
+3 things it can do:
+    1)design website
+    2)price website
+    3)make website
+
+5 properties:
+    1)has pay service
+    2)has facebook
+    3)has video
+    4)has member login
+    5)is free
  */
 struct MakeWebsite
 {
-    int type = 1;
-    int size = 4;
     
-    unsigned int customersServed = 30;
-
-    struct Company
-    {
-        void registerCustomer()
-        {
-
-        }
-        void customerCare()
-        {
-
-        }
-    };
-
-    void makeSite(int type);
-
-    Company gcom, xcom;
 };
-void MakeWebsite::makeSite(int)
-{
-    if(type == 1)
-    {
-        gcom.registerCustomer();
-    }
-    else
-    {
-        xcom.customerCare();
-    }
 
-}
 /*
  9)
+3 things it can do:
+    1)books ticket
+    2)in forms client there transport has arrived
+    3)in forms client there transplort has been re scheduled 
+
+5 properties:
+    1)departure time
+    2)departure location
+    3)arrival time 
+    4)arrival location
+    5)has guest
  */
 struct JourneyPlan
 {
-    int depature = 4;
-    int arrival = 1;
-    bool availableSeats = true;
-
-    struct Passenger
-    {
-        void sitPassanger()
-        {
-
-        }
-        void rebookPassenger()
-        {
-
-        }
-
-    };
-
-    void travel(int departure, int arrival, bool availableSeats);
-
-    Passenger greet, appologise;
+    
 };
-void JourneyPlan::travel(int, int, bool)
-{
-    if(availableSeats == true)
-    {
-        greet.sitPassanger();
-    }
-    else
-    {
-        appologise.rebookPassenger();
-    }
-}
+
 /*
  10)
+3 things it can do:
+    1)books party
+    2)cancels booking
+    3)reschedules booking
+
+5 properties:
+    1)number of guests
+    2)includes band
+    3)includes food
+    4)includes drink
+    5)includes dj
  */
 struct Party
 {
-    int location = 1;
-    int time = 8;
-    bool booking = true;
-
-    struct People
-    {
-        void seatCustomers()
-        {
-
-        }
-        void customersWait()
-        {
-
-        }
-    
-    };      
-    
-    void greetCustomers(int location, int time);
-    
-    People bbq, evening;
     
 };
 
-void Party::greetCustomers(int, int)
-{
-    if(booking == true)
-    {
-        bbq.seatCustomers();
-    }
-    else
-    {
-        evening.customersWait();
-    }
-}
 
 #include <iostream>
 int main()
