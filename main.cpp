@@ -426,13 +426,13 @@ struct Party
         void customersWait()
         {
 
-        }   
+        }
+    
+    };      
+    
     void greetCustomers(int location, int time);
     
-    Party bbq, evening
-    
-    };
-    
+    People bbq, evening;
     
 };
 
@@ -444,7 +444,7 @@ void Party::greetCustomers(int location, int time)
     }
     else
     {
-        evening.customerWait();
+        evening.customersWait();
     }
 }
 
