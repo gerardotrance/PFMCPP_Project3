@@ -20,10 +20,24 @@ struct Person
     unsigned int SATScore;
     int distanceTraveled;
 
+    struct Foot
+    {
+        void stepForward()
+        {
+
+        }
+        int stepSize()
+        {
+            return{};
+        }
+    };
     void run(int howFast, bool startWithLeftFoot);
+
+    Foot leftFoot, rightFoot;
 };
 
 void Person::run(int howFast, bool startWithLeftFoot)
+
 {
     if(startWithLeftFoot == true)
     {
@@ -32,10 +46,10 @@ void Person::run(int howFast, bool startWithLeftFoot)
     }
     else
     {
-        void rightFoot.stepForward();
-        void leftFoot.stepForward();
+        rightFoot.stepForward();
+        leftFoot.stepForward();
     }
-    int distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize();
+    distanceTraveled += leftFoot.stepSize() + rightFoot.stepSize(); 
 }
 
 
@@ -68,18 +82,35 @@ struct GymPlan
     
     unsigned int numMembers = 9;
 
-    struct Person
+    struct Membership
     {
-        int age = 30;
-        int height = 6;
-    
-        void enterMember(int memberNumber);
+        
+        void enterPerson()
+        {
+
+        }
+        void declinePerson()
+        {
+
+        }
     };
     
-    void goToGym(Person person);
+    void goToGym(bool member, int daysPerWeek);
     
-    Person gymPerson;
+    Membership enter, decline;
 };
+
+void GymPlan::goToGym(bool member, int daysPerWeek)
+{
+    if(member == true)
+    {
+        enter.enterPerson();
+    }
+    else
+    {
+        decline.declinePerson();
+    }
+}
 /*
  2)
  */
@@ -87,40 +118,72 @@ struct DogWalkerPlan
 {
     int daysPerWeek = 3;
     float milesPerWalk = 2.5;
-
+    bool dogClean = true;
     unsigned int timesWalked = 22;
 
     struct Dog
     {
-        int dogBreed = 4;
-        int dogAge = 12;
+        void walkDog()
+        {
 
-        void washDog(int dogSoapType = 4);
+        }
+
+        void washDog()
+        {
+
+        }
     };
-    void walkDog(Dog dog);
+    void exerciseDog(int breed);
 
-    Dog greatDane;
+    Dog walk, wash;
 };
+void DogWalkerPlan::exerciseDog(int breed)
+{
+    if(dogClean == true)
+    {
+        walk.walkDog();
+    }
+    else 
+    {
+        wash.washDog();
+    }
+}
 /*
  3)
  */
 struct DjMix
 {
-    int timeSlot = 2;
+    bool inSync = true;
     int slotHrs = 3;
 
     unsigned int timesPlayed = 4;
 
-    struct DjStyle
+    struct PlayButton
     {
-        bool isScratch = true;
-        bool isTechno = true;
-        void switchOnSystem(bool on = true);
+        void pressPlay()
+        {
+
+        }
+        void pressTempo()
+        {
+
+        }
     };
-    void playDj(DjStyle djstyle);
+    void playDj(int slotHrs);
     
-    DjStyle technoDj;
+    PlayButton mix, tempo ;
 };
+void DjMix::playDj(int slotHrs)
+{
+    if(inSync == true)
+    {
+        mix.pressPlay();
+    }
+    else
+    {
+        tempo.pressTempo();
+    }
+}
 /*
  4)
  */
@@ -128,43 +191,74 @@ struct KaratePractice
 {
     int timeSlot = 1;
     int location =4;
+    bool isBoxing = false;
 
     unsigned int numberOfStudents = 8;
 
-    struct Student
+    struct StudentLesson
     {
-        int belt = 9;
-        int yearsInClub = 2;
-        
-        void prepareGrading(bool prepared = true);
+     void takeLesson()
+     {
+
+     }
+     void posponeLesson()
+     {
+
+     }   
     };
 
-    void practiceKarate(Student student);
+    void practiceKarate(int timeSlot, int location);
 
-    Student me;
+    StudentLesson karate, boxing;
 };
+void KaratePractice::practiceKarate(int timeSlot, int location)
+{
+    if(isBoxing == false)
+    {
+        karate.takeLesson();
+    }
+    else
+    {
+        boxing.posponeLesson();
+    }
+}
 /*
  5)
  */
 struct DrivingLesson
 {
-    bool isCar = true;
+    bool hasKey = true;
     int location = 1;
 
     unsigned int numberOfStudents  = 7;
 
-    struct Person
+    struct Exelerater
     {
-        bool isFirstLesson = false;
-        bool hasStudied = true;
-        
-        void prepareVehicle(bool keyTurned = true);
+       void drive()
+       {
+
+       } 
+       void reverse()
+       {
+
+       }
     };
 
-    void takeLesson(Person person);
+    void takeLesson(int location);
 
-    Person gez;
+    Exelerater fast, slow;
 };
+void DrivingLesson::takeLesson(int location)
+{
+    if(hasKey == true)
+    {
+        fast.drive();
+    }
+    else
+    {
+        slow.reverse();
+    }
+}
 /*
  6)
  */
@@ -177,17 +271,31 @@ struct FishCareRoutine
 
     struct FishDetails
     {
-        bool isMarine = true;
-        bool isTropical = false;
-        int tankSize = 100;
+        void brush()
+        {
 
-        void prepareEquiptment(int brushType = 1);
+        }
+        void fishFood()
+        {
+
+        }
     };
 
-    void attendFish(FishDetails fishDetails);
+    void attendFish(int dayOfWeek);
 
-    FishDetails tigerFish;
+    FishDetails clean, feed;
 };
+void FishCareRoutine::attendFish(int dayOfWeek)
+{
+    if(dayOfWeek == 2)
+    {
+        clean.brush();
+    }
+    else
+    {
+        feed.fishFood();
+    }
+}
 /*
  7)
  */
@@ -196,21 +304,35 @@ struct SaladPrepList
     bool haveBowl = true;
     bool haveSpoon = true;
 
-    unsigned int time  = 12;
+    int time  = 12;
 
-    struct Ingredients
-    {
-        bool strawberry = true;
-        bool celery = false;
-        int extraFruit = 4;
+    struct Chef
+    { 
 
-        void mixIngredients();
+        void stirFast()
+        {
+
+        }
+        void stirSlow()
+        {
+
+        }
     };
+    void prepareSalad(int time);
 
-    void prepareSalad(Ingredients);
-
-    Ingredients celerySalad;
+    Chef spoon, whisk;
 };
+void SaladPrepList::prepareSalad(int time)
+{
+    if(haveBowl == true)
+    {
+        spoon.stirFast();
+    }
+    else
+    {
+        whisk.stirSlow();
+    }
+}
 /*
  8)
  */
@@ -223,39 +345,70 @@ struct MakeWebsite
 
     struct Company
     {
-        int users = 1;
-        double customers = 100000;
+        void registerCustomer()
+        {
 
-        void registerCustomer();
+        }
+        void customerCare()
+        {
+
+        }
     };
 
-    void makeSite(Company company);
+    void makeSite(int type);
 
-    Company gcom;
+    Company gcom, xcom;
 };
+void MakeWebsite::makeSite(int type)
+{
+    if(type == 1)
+    {
+        gcom.registerCustomer();
+    }
+    else
+    {
+        xcom.customerCare();
+    }
+
+}
 /*
  9)
  */
 struct JourneyPlan
 {
-    int depatureLocation = 4;
-    int arrivalLocation = 1;
+    int depature = 4;
+    int arrival = 1;
 
-    unsigned int availableSeats = 6;
+    bool availableSeats = true;
 
     struct Passenger
     {
-        bool isFrequentFlyer = true;
-        int seatNumber = 22;
+        void sitPassanger()
+        {
 
-        void sitPassanger();
+        }
+        void rebookPassenger()
+        {
+
+        }
 
     };
 
-    void travel(Passenger passenger);
+    void travel(int departure, int arrival);
 
-    Passenger me;
+    Passenger greet, appologise;
 };
+void JourneyPlan::travel(int departure, int arrival)
+{
+    if(availableSeats == true)
+    {
+        greet.sitPassanger();
+    }
+    else
+    {
+        appologise.rebookPassenger();
+    }
+}
 /*
  10)
  */
@@ -268,18 +421,12 @@ struct Party
 
     struct People
     {
-        int amount = 20;
-        bool specialBooth = true;
+        void seatCustomers()
+        {
 
-        void seatCustomers();
-    };
-
-    void haveParty(People people);
-
-    People all;
-};
-#include <iostream>
-int main()
-{
-    std::cout << "good to go!" << std::endl;
-}
+        }
+        void customersWait()
+        {
+            
+        }
+        
