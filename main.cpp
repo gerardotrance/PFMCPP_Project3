@@ -416,8 +416,7 @@ struct Party
 {
     int location = 1;
     int time = 8;
-    
-    unsigned int previousParties = 0;
+    bool booking = true;
 
     struct People
     {
@@ -427,6 +426,20 @@ struct Party
         }
         void customersWait()
         {
-            
-        }
-        
+
+    void greetCustomers(int location, int time);
+    
+    Party bbq, evening;
+};
+
+void Party::greetCustomers(int location, int time)
+{
+    if(booking == true)
+    {
+        bbq.seatCustomers();
+    }
+    else
+    {
+        evening.customerWait();
+    }
+}
