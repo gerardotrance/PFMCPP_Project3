@@ -36,7 +36,7 @@ struct Person
     Foot leftFoot, rightFoot;
 };
 
-void Person::run(int howFast, bool startWithLeftFoot)
+void Person::run(int, bool startWithLeftFoot)
 
 {
     if(startWithLeftFoot == true)
@@ -100,7 +100,7 @@ struct GymPlan
     Membership enter, decline;
 };
 
-void GymPlan::goToGym(bool member, int daysPerWeek)
+void GymPlan::goToGym(bool member, int)
 {
     if(member == true)
     {
@@ -133,11 +133,11 @@ struct DogWalkerPlan
 
         }
     };
-    void exerciseDog(int breed);
+    void exerciseDog(int breed, bool dogClean);
 
     Dog walk, wash;
 };
-void DogWalkerPlan::exerciseDog(int breed)
+void DogWalkerPlan::exerciseDog(int, bool dogClean)
 {
     if(dogClean == true)
     {
@@ -169,11 +169,11 @@ struct DjMix
 
         }
     };
-    void playDj(int slotHrs);
+    void playDj(int slotHrs, bool inSync);
     
     PlayButton mix, tempo ;
 };
-void DjMix::playDj(int slotHrs)
+void DjMix::playDj(int, bool inSync)
 {
     if(inSync == true)
     {
@@ -207,11 +207,11 @@ struct KaratePractice
      }   
     };
 
-    void practiceKarate(int timeSlot, int location);
+    void practiceKarate(int timeSlot, int location, bool isBoxing);
 
     StudentLesson karate, boxing;
 };
-void KaratePractice::practiceKarate(int timeSlot, int location)
+void KaratePractice::practiceKarate(int, int, bool isBoxing)
 {
     if(isBoxing == false)
     {
@@ -244,11 +244,11 @@ struct DrivingLesson
        }
     };
 
-    void takeLesson(int location);
+    void takeLesson(int location, bool hasKey);
 
     Exelerater fast, slow;
 };
-void DrivingLesson::takeLesson(int location)
+void DrivingLesson::takeLesson(int, bool hasKey)
 {
     if(hasKey == true)
     {
@@ -285,7 +285,7 @@ struct FishCareRoutine
 
     FishDetails clean, feed;
 };
-void FishCareRoutine::attendFish(int dayOfWeek)
+void FishCareRoutine::attendFish(int)
 {
     if(dayOfWeek == 2)
     {
@@ -318,11 +318,11 @@ struct SaladPrepList
 
         }
     };
-    void prepareSalad(int time);
+    void prepareSalad(int time, bool haveSpoon);
 
     Chef spoon, whisk;
 };
-void SaladPrepList::prepareSalad(int time)
+void SaladPrepList::prepareSalad(int, bool haveSpoon)
 {
     if(haveBowl == true)
     {
@@ -359,7 +359,7 @@ struct MakeWebsite
 
     Company gcom, xcom;
 };
-void MakeWebsite::makeSite(int type)
+void MakeWebsite::makeSite(int)
 {
     if(type == 1)
     {
@@ -378,7 +378,6 @@ struct JourneyPlan
 {
     int depature = 4;
     int arrival = 1;
-
     bool availableSeats = true;
 
     struct Passenger
@@ -394,11 +393,11 @@ struct JourneyPlan
 
     };
 
-    void travel(int departure, int arrival);
+    void travel(int departure, int arrival, bool availableSeats);
 
     Passenger greet, appologise;
 };
-void JourneyPlan::travel(int departure, int arrival)
+void JourneyPlan::travel(int, int, bool availableSeats)
 {
     if(availableSeats == true)
     {
@@ -427,9 +426,14 @@ struct Party
         void customersWait()
         {
 
+        }   
     void greetCustomers(int location, int time);
     
-    Party bbq, evening;
+    Party bbq, evening
+    
+    };
+    
+    
 };
 
 void Party::greetCustomers(int location, int time)
@@ -444,3 +448,8 @@ void Party::greetCustomers(int location, int time)
     }
 }
 
+#include <iostream>
+int main()
+{
+    std::cout << "go to go!" << std::endl;
+}
