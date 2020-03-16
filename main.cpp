@@ -157,9 +157,9 @@ void DogWalkerPlan::feedAllDogs()
     3) sync tempo
 
 5 properties:
-    1)is edm
-    2)is rock
-    3)is hiphop
+    1)length in  minutes
+    2)music type
+    3)volume level
     4)tempo
     5)key
  */
@@ -176,10 +176,10 @@ struct DjMix
     3)update belt
 
 5 properties:
-    1)is blackbelts
-    2)is whitebelt
-    3)is long session
-    4)is intro
+    1)style of karate
+    2)type of belt
+    3)session length
+    4)is introductory session
     5)location number
  */
 struct KaratePractice
@@ -257,7 +257,7 @@ struct SaladPrepList
     4)has member login
     5)is free
  */
-struct MakeWebsite
+struct WebsiteDeveloper
 {
     
 };
@@ -265,9 +265,9 @@ struct MakeWebsite
 /*
  9)
 3 things it can do:
-    1)books ticket
-    2)in forms client there transport has arrived
-    3)in forms client there transplort has been re scheduled 
+    1)add events to journey
+    2)reschedule departure
+    3)cancel journey 
 
 5 properties:
     1)departure time
