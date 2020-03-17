@@ -141,6 +141,7 @@ struct DogWalkerPlan
     void feedDog(int whichDogToFeed);
     void feedAllDogs();
 };
+
 void DogWalkerPlan::feedDog(int)
 {
 
@@ -163,11 +164,33 @@ void DogWalkerPlan::feedAllDogs()
     4)tempo
     5)key
  */
+ 
 struct DjMix
 {
+    int lengthMins = 60;
+    int volumedB = 0;
+    int tempoBpm = 120;
+    int key = 1;
     
+    void playMix();
+    
+    void syncMixTempo();
+    
+    void stopMix(); 
 };
 
+void DjMix::playMix()
+{
+
+}
+void DjMix::syncMixTempo()
+{
+
+}
+void DjMix::stopMix()
+{
+
+}
 /*
  4)
  3 things it can do:
@@ -184,8 +207,33 @@ struct DjMix
  */
 struct KaratePractice
 {
+    bool isIntroductorySession = false;
+    bool isStyleOfKarate = true;
+    int sessionLengthMins = 60;
+    int locationNumber = 2;
+    int beltGrade = 4;
+
+    void startPractice(bool isIntroductorySession, bool isStyleOfKarate, int sessionLengthMins, int locationNumber);
+    
+    void endPractice();
+    
+    void updateBelt(int beltGrade);
+
     
 };
+
+void KaratePractice::startPractice(bool, bool, int, int)
+{
+
+}
+void KaratePractice::endPractice()
+{
+
+}
+void KaratePractice::updateBelt(int)
+{
+
+}
 /*
  5)
 3 things it can do:
@@ -202,9 +250,33 @@ struct KaratePractice
  */
 struct DrivingLesson
 {
+    bool isCar = true;
+    bool isMotorBike = false;
+    bool isFirstLesson = false;
+    bool isLastLesson = false;
+    bool isSpecialCourse = true;
+    bool hasPassed = true; 
     
+    void startLesson(bool isCar, bool isMotorBike, bool isFirstLesson, bool isLastLesson, bool isSpecialLesson);
+
+    void endLesson();
+
+    void passStudent(bool hasPassed);
+
 };
 
+void DrivingLesson::startLesson(bool, bool, bool, bool, bool)
+{
+
+}
+void DrivingLesson::endLesson()
+{
+
+}
+void DrivingLesson::passStudent(bool)
+{
+
+}
 /*
  6)
 3 things it can do:
@@ -221,9 +293,31 @@ struct DrivingLesson
  */
 struct FishCareRoutine
 {
+    bool isMarine = true;
+    bool isTropical = true;
+    bool isPond = false;
+    bool isCoral = true;
+    bool isSpecial = true;
+
+    void feedFish();
     
+    void cleanFish();
+    
+    void specialFullService(bool isSpecial);
 };
 
+void FishCareRoutine::feedFish()
+{
+
+}
+void FishCareRoutine::cleanFish()
+{
+
+}
+void FishCareRoutine::specialFullService(bool)
+{
+
+}
 /*
  7)
 3 things it can do:
@@ -238,11 +332,33 @@ struct FishCareRoutine
     4)bowl size number
     5)dressing type
  */
-struct SaladPrepList
+struct SaladPreper
 {
-   
-};
+    bool isVegan = true;
+    bool hasNuts = false;
+    bool containsMeat = false;
+    int bowlSizeNo = 1;
+    int dressingType = 2;
 
+    void prepareSalad(bool isVegan, bool hasNuts, bool containsMeat );
+    
+    void makeSalad(int dressingType);
+    
+    void serveSalad(int bowlSizeNo);
+
+};
+void SaladPreper::prepareSalad(bool, bool, bool)
+{
+
+}
+void SaladPreper::makeSalad(int)
+{
+
+}
+void SaladPreper::serveSalad(int)
+{
+
+}
 /*
  8)
 3 things it can do:
@@ -259,9 +375,30 @@ struct SaladPrepList
  */
 struct WebsiteDeveloper
 {
-    
-};
+    bool hasPaymentApi = true;
+    bool hasFacebookApi = false;
+    bool hasVideo = true;
+    bool hasMemberAccounts = true;
+    bool isFree = false;
 
+    void designWebsite(bool hasPaymentApi, bool hasFacebookApi, bool hasVideo, bool hasMemberAccounts);
+
+    void priceWebsite(bool isFree);
+
+    void makeWebsite();
+};
+void WebsiteDeveloper::designWebsite(bool, bool, bool, bool)
+{
+
+}
+void WebsiteDeveloper::priceWebsite(bool)
+{
+
+}
+void WebsiteDeveloper::makeWebsite()
+{
+
+}
 /*
  9)
 3 things it can do:
@@ -278,9 +415,31 @@ struct WebsiteDeveloper
  */
 struct JourneyPlan
 {
-    
+    float departureTime = 20.30f;
+    int depatureLocation = 2;
+    float arrivalTime = 23.00f;
+    int arrivalLocation = 4;
+    bool hasGuest = false;
+
+    void addEventToJourney();
+
+    void rescheduleDeparture();
+
+    void cancelJourney();  
 };
 
+void JourneyPlan::addEventToJourney()
+{
+
+}
+void JourneyPlan::rescheduleDeparture()
+{
+
+}
+void JourneyPlan::cancelJourney()
+{
+
+}
 /*
  10)
 3 things it can do:
@@ -297,9 +456,32 @@ struct JourneyPlan
  */
 struct Party
 {
-    
+    int numberOfGuests = 22;
+    bool hasBand = true;
+    bool hasFood = true;
+    bool hasDrink = true;
+    bool hasDj = false;
+
+    void bookParty(int numberOfGuests, bool hasBand, bool hasFood, bool hasDrink, bool hasDj);
+
+    void cancelParty();
+
+    void rescheduleBooking();
+
 };
 
+void Party::bookParty(int, bool, bool, bool, bool)
+{
+
+}
+void Party::cancelParty()
+{
+
+}
+void Party::rescheduleBooking()
+{
+
+}
 
 #include <iostream>
 int main()
