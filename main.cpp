@@ -176,7 +176,9 @@ struct DjMix
     
     void syncMixTempo();
     
-    void stopMix(); 
+    void stopMix();
+
+
 };
 
 void DjMix::playMix()
@@ -263,11 +265,30 @@ struct DrivingLesson
 
     void passStudent(bool hasPassed);
 
+    struct Saftey
+    {
+        void wearHelmet()
+        {
+
+        }
+        void wearSeatbelt()
+        {
+
+        }
+    };
+        Saftey driver, rider;
 };
 
 void DrivingLesson::startLesson(bool, bool, bool, bool, bool)
 {
-
+        if(isMotorBike== true)
+        {
+            rider.wearHelmet();
+        }
+        else
+        {
+            driver.wearSeatbelt();
+        }
 }
 void DrivingLesson::endLesson()
 {
@@ -304,6 +325,20 @@ struct FishCareRoutine
     void cleanFish();
     
     void specialFullService(bool isSpecial);
+
+    struct UvLight
+        {
+            void lightOn()
+            {
+
+            }
+            void noLight()
+            {
+
+            }
+        };
+        
+        UvLight present, abcent;
 };
 
 void FishCareRoutine::feedFish()
@@ -316,7 +351,14 @@ void FishCareRoutine::cleanFish()
 }
 void FishCareRoutine::specialFullService(bool)
 {
-
+        if(isSpecial==true)
+        {
+            present.lightOn();
+        }
+        else
+        {
+            abcent.noLight();
+        }
 }
 /*
  7)
