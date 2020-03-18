@@ -496,34 +496,15 @@ void JourneyPlan::cancelJourney()
     4)includes drink
     5)includes dj
  */
-struct Party
+ struct Party{ };
+
+int body()
 {
-    int numberOfGuests = 22;
-    bool hasBand = true;
-    bool hasFood = true;
-    bool hasDrink = true;
-    bool hasDj = false;
+    Party party;
 
-    void bookParty(int numberOfGuests, bool hasBand, bool hasFood, bool hasDrink, bool hasDj);
-
-    void cancelParty();
-
-    void rescheduleBooking();
-
-};
-
-void Party::bookParty(int, bool, bool, bool, bool)
-{
-
+    return 0;
 }
-void Party::cancelParty()
-{
 
-}
-void Party::rescheduleBooking()
-{
-
-}
 
 #include <iostream>
 int main()
