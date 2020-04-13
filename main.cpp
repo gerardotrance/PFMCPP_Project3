@@ -14,7 +14,51 @@ Create a branch named Part2
     you should be able to deduce the return type of those functions based on their usage in Person::run()
     You'll need to insert the Person struct from the video in the space below.
  */
+struct Person
+{
+    int age;
+    int height;
+    float hairLength;
+    float GPA;
+    unsigned int SATScore;
+    int distanceTraveled;
 
+    void run(int howFast, bool startWithLeftFoot);
+
+    struct Foot
+    {
+        int numberOfSteps = 0;
+        int step = 5;
+
+        void stepForward()
+        {
+            numberOfSteps += 1;
+        }
+        
+        int stepSize(int speed)
+        {
+            return speed * step;
+        }
+    };
+    
+    Foot rightFoot;
+    Foot leftFoot;
+};
+
+void Person::run(int howFast, bool startWithLeftFoot)
+{
+    if (startWithLeftFoot == true)
+    {
+        leftFoot.stepForward();
+        rightFoot.stepForward();
+    }
+    else
+    {
+        rightFoot.stepForward();
+        leftFoot.stepForward();
+    }
+    distanceTraveled += leftFoot.stepSize(howFast) + rightFoot.stepSize(howFast);
+}
 
 
 
@@ -37,70 +81,126 @@ send me a DM to check your pull request
 
 
 /*
- 1)midi keyboard
- 5 properties:
- 1)keys
- 2)pitch wheel
- 3)mod wheel
- 4)usb lead
- 5)body
- 3 things it can do:
- 1)plays midi notes
- 2)changes pitch
- 3)changes macros
  */
+#include<iostream>
+
 struct MidiKeyboard
 {
     int keys = 88;
     bool pitchWheel = true;
     bool modWheel = true;
-    bool usbCompatable = true;
-    bool metalBody = false;
+    bool keyPressed = false;
     
-    void playMidiNotes(int keys);
+    void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
 };
+
+void MidiKeyboard::playMidiNotes(bool press)
+{
+    keyPressed = press;
+
+    if(keyPressed == true)
+    {
+        std::cout << "key pressed" << std::endl;  
+    }
+    else
+    {
+        std::cout << "key not pressed" << std::endl;
+    } 
+}
+
+void MidiKeyboard::changePitch(bool up)
+{
+    pitchWheel = up;
+    
+    if(pitchWheel == true)
+    {
+        std::cout << "pitch wheel" << std::endl;
+    }
+    else
+    {
+        std::cout << "no pitch wheel" << std::endl;
+    }
+}
+
+void MidiKeyboard::controlMacros(bool macro)
+{
+    modWheel = macro;
+
+    if(modWheel == true)
+    {
+        std::cout << "mod wheel" << std::endl;
+    }
+    else
+    {
+        std::cout << "no mod wheel" << std::endl;
+    }
+}
 /*
- 2)guitar
- 5 properties:
- 1)manufacturer
- 2)neck
- 3)strings
- 4)jack
- 5)cable
- 3 things it can do:
- 1)play notes
- 2)play chords
- 3)play muted
  */
 # include <string>
+
 struct Guitar
 {
     std::string manufacturer = "akai";
     bool neck = true;
     int strings = 6;
-    bool jack = true;
-    bool cable = true;
+    bool strum;
+    bool muted;
 
-    void playNote(int strings);
-    void playChord(int strings);
-    void playMuted(bool neck, int strings);
+    int playNote(bool strum);
+    void playChord(int stringNumber, bool strum); 
+    void playMuted(bool muted, bool strum);
 };
+
+int Guitar::playNote(bool strumming) 
+{
+    strum = strumming;
+    
+    if(strings > 0)
+    {
+        return strings;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+void Guitar::playChord(int stringNumber, bool strummingChord) 
+{
+    strings = stringNumber; 
+    strum = strummingChord; 
+
+    if(strings > 0 || strum == true) 
+    {
+        std::cout << "note played" << std::endl;
+    }
+    else
+    {
+        strings = 0;
+    }   
+}
+
+void Guitar::playMuted(bool muteHeld, bool strumming) 
+{
+    muted = muteHeld;
+    strum = strumming;
+    
+    if(strings > 0 || strum == true || muted == true)
+    {
+        std::cout << "muted note played" << std::endl;    
+    }
+    else
+    {
+        strings = 0;
+    }
+}
 /*
- 3)mobile phone
- 5 properties:
- 1)screen
- 2)buttons
- 3)mic
- 4)speaker
- 5)brand
- 3 things it can do:
- 1)make calls
- 2)recieve calls
- 3)send text messages
  */
 # include <string> 
+
 struct MobilePhone
 {
     bool screen = true;
@@ -110,21 +210,34 @@ struct MobilePhone
     std::string brand = "sony"; 
 
     void makeCall(bool buttons, bool mic);
-    void answerCall(bool buttons, bool mic, bool speaker);
+    void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
 };
+
+void MobilePhone::makeCall(bool button, bool voice)
+{
+    buttons = button;
+    mic = voice;
+
+    std::cout << "Calling" << std::endl;
+}
+
+void MobilePhone::answerCall(bool button, bool audio)
+{
+    buttons = button;
+    mic = audio;
+
+    std::cout << "Answered Call" << std::endl;
+}
+
+void MobilePhone::sendText(bool image, bool text)
+{
+    screen = image;
+    buttons = text;
+
+    std::cout << "Text Sent" << std::endl;
+}
 /*
- 4)game
- 5 properties:
- 1)players
- 2)levels
- 3)objects
- 4)enemies
- 5)allies
- 3 things it can do:
- 1)play
- 2)pause
- 3)exit
  */
 struct Game
 {
@@ -138,18 +251,33 @@ struct Game
     void pause(bool objects);
     void exit();
 };
+
+void Game::play(int character)
+{
+    players = character;
+
+    if(players == 1 || players == 2)
+    {
+        std::cout << "welcome player to the game" << std::endl;
+    }
+    else
+    {
+        std::cout << "choose players" << std::endl;
+    }
+}
+
+void Game::pause(bool items)
+{
+    objects = items;
+
+    std::cout << "Game Paused" << std::endl;
+}
+
+void Game::exit()
+{
+    std::cout << "Game Over" << std::endl;
+}
 /*
- 5)digital audio workstation/DAW
- 5 properties:
- 1)audio tracks
- 2)midi tracks
- 3)plugins
- 4)stereo output
- 5)stereo input
- 3 things it can do:
- 1)record midi
- 2)record audio
- 3)output audio
  */
 struct Daw
 {
@@ -159,89 +287,158 @@ struct Daw
     bool stereoOutput = true;
     bool stereoInput = true;
 
-    void recordMidi(bool plugins, int midiTracks);
-    void recordAudio(int audioTracks, bool stereoInput);
-    void outputAudio(bool stereoOutput);
+    float recordMidi(bool plugins, int midiTracks);
+    float recordAudio(int audioTracks, bool stereoInput);
+    float outputAudio(bool stereoOutput);
 };
-/*
- 6)laptop
- 5 properties:
- 1)screen
- 2)keyboard
- 3)passwor
- 4)harddrive
- 5)ram
- 3 things it can do:
- 1)recieve input
- 2)produce output
- 3)save data
- */
+
+float Daw::recordMidi(bool presentPlugin , int midi)
+{
+    plugins = presentPlugin;
+    midiTracks = midi;
+
+    return(midiTracks);
+}
+
+float Daw::recordAudio(int audio, bool stereo)
+{
+    audioTracks = audio;
+    stereoInput = stereo;
+
+    return(stereoOutput);   
+}
+
+float Daw::outputAudio(bool output)
+{
+    stereoOutput = output;
+
+    if(stereoOutput == true)
+    {
+        return audioTracks;
+    }
+    {
+        return 0;
+    }
+}
+
 #include <string>
 struct Laptop
 {
-    int screenresolution = 4000;
+    int screenResolution = 4000;
     bool keyboard = true;
     std::string password = "password";
     int hardDriveAvailableGb = 256;
     int memoryGb = 8; 
 
-    void recieveInput(bool keyboard, std::string password, int memoryGb);
-    void produceOutput(bool screen, int memoryGb);
-    void saveData(int hardDriveAvailableGb);
+    void receiveInput(bool keyboard, std::string password, int memoryGb);
+    float produceOutput(bool screenResolution, int memoryGb);
+    float saveData(int hardDriveAvailableGb);
 };
+
+void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
+{
+    keyboard = keyboardInput;
+    password = user;
+    memoryGb = RAM;
+
+    if(password == "password")
+    {
+        std::cout << "welcome user" << std::endl;
+    }
+    if(password != "password")
+    {
+        std::cout << "incorrect password" << std::endl;
+    }
+    else
+    {
+        std::cout << "enter password" << std::endl;
+    }
+
+}
+
+float Laptop::produceOutput(bool graphics, int RAM)
+{
+    screenResolution = graphics;
+    memoryGb = RAM;
+
+    return(memoryGb);
+}
+
+float Laptop::saveData(int storage)
+{ 
+    hardDriveAvailableGb = storage;
+
+    return(hardDriveAvailableGb);
+}
 /*
- 7)television
- 5 properties:
- 1)screen type lcd/oled ect
- 2)speaker type surround/stereo ect
- 3)dimensions
- 4)resolution
- 5)digital or analogue
- 3 things it can do:
- 1)dispaly television channels
- 2)change television channels
- 3)switch off
  */
 struct Television
 {
     bool flatScreen = true;
     bool surroundSound = true;
     int heightCm = 60;
-    int lengthCm = 80;
-    float resolution = 4000;
-    bool digital = true;
-
+    int tvChannel = 1;
+    bool onButton = true;
+    
     struct RemoteControl
     {
         int numberButtons = 10;
-        bool onButton = true;
+        bool channelUp;
+        bool channelDown;
+        
+        void pressButton();
     };
+    
+    void switchTvOn(bool onButton);
+    void switchTvOff(bool onButton);
+    int changeTvChannel(int tvChannel);
 
-    void switchTvOn(RemoteControl);
-    void changeTvChannel(RemoteControl);
-    void switchTvOff(RemoteControl);
-
-    RemoteControl controlOn, controlOff;
+    RemoteControl controlOff;
+    RemoteControl controlOn;
 };
+
+void Television::switchTvOn(bool status)
+{
+    onButton = status;
+
+    if (onButton == true)
+    {
+        std::cout << "button pressed" << std::endl;
+    }
+      
+    else
+    {
+        std::cout << "button ready" << std::endl;
+    }
+}
+
+int Television::changeTvChannel(int frequency)
+{
+    tvChannel = frequency; 
+    
+    std::cout << "T.V Channel" << std::endl;
+    
+    return tvChannel; 
+}
+
+void Television::switchTvOff(bool status)
+{
+    onButton = status;
+
+    if (onButton == false)
+    {
+        std::cout << "television off" << std::endl;
+    }
+}
 /*
- 8)fish tank
- 5 properties:
- 1)water temp
- 2)dimesions
- 3)gallons
- 4)lighton
- 5)decor
- 3 things it can do:
- 1)switch light on
- 2)switch heater on
- 3)switch off
  */
+#include<iostream>
+
 struct FishTank
 {
     float waterTempCelcius = 25.0f;
     int heightCm = 30;
     int lengthCm = 90;
-    int depthCm = 30;
     int gallons = 50;
     bool lightOn = true;
 
@@ -253,27 +450,57 @@ struct FishTank
         int numberOfCorals = 0;
         bool rocks = true;
         int numberOfRocks = 5;
+        
         void cleanDecor();
     };
 
     void switchLightOn(bool lightOn);
     void switchHeaterOn(float waterTempCelcius);
-    void feedFish();
+    void feedFish(int gallons);
 
     Decor tropical, marine;
 };
+
+void FishTank::switchLightOn(bool lighting)
+{
+    lightOn = lighting;
+
+    std::cout << "light is on" << std::endl;
+}
+
+void FishTank::switchHeaterOn(float waterTemprature)
+{
+    waterTempCelcius = waterTemprature;
+
+    if(waterTempCelcius > 25.0f)
+    {
+        std::cout << "Marine Aquarium" << std::endl;
+    }
+      
+    else
+    {
+        std::cout << "Tropical Aquarium" << std::endl;
+    }
+}
+
+void FishTank::feedFish(int aquariumSize)
+{
+    gallons = aquariumSize;
+
+    if(gallons <= 50)
+    {
+        std::cout << "feed fish once a week" << std::endl;  
+    }
+    if(gallons <= 100 || gallons > 50)
+    {
+        std::cout << "feed fish twice a week" << std::endl;
+    }
+    else
+    {
+        std::cout << "feed fish at least three times a week" << std::endl;
+    }        
+}
 /*
- 9)cinema
- 5 properties:
- 1)seats
- 2)screen
- 3)projector
- 4)film
- 5)lights
- 3 things it can do:
- 1)project film
- 2)turn lights down
- 3)seat customers
  */
 struct Cinema
 {
@@ -284,24 +511,58 @@ struct Cinema
     int lightLevel = 10;
 
     void playFilm(bool screenOn,bool projectorOn);
-    void setLightLevel(int lightLevel);
+    int setLightLevel(int lightLevel);
     void sitCustomers(int seats, int freeSeats);
 };
+
+void Cinema::playFilm(bool screenPlaying, bool projectorPlaying)
+{
+    screenOn = screenPlaying;
+    projectorOn = projectorPlaying;
+
+    if(screenOn == true || projectorOn == true)
+    {
+        std::cout << "Quiet Please Movie is On" << std::endl;
+    }
+    else
+    {
+        std::cout << "Movie will Start soon" << std::endl;
+    } 
+}
+
+int Cinema::setLightLevel(int mood)
+{
+    lightLevel = mood;
+
+    if(lightLevel == 0)
+    {
+        return lightLevel + 1;
+    }
+    else if(lightLevel == 10)
+    {
+        return lightLevel - 1;
+    }
+    else
+    {
+        return lightLevel = 5;
+    }
+}
+
+void Cinema::sitCustomers(int seatNumber, int seatsAvailable)
+{
+    seats = seatNumber;
+    freeSeats = seatsAvailable;
+
+    if(freeSeats < 1)
+    {
+        std::cout << "Sorry all seats are taken" << std::endl;
+    }
+    else
+    {
+        std::cout << "Please select seat" << std::endl;
+    }
+}
 /*
- 10)producer
- 5 properties:
- These 5 properties should be UDTs that you defined above.
- this goes along with the instruction:
-    One of your 10 UDTs should only use UDTs for its member variable types.
- 1)Guitar 
- 2)Midi keyboard
- 3)computer
- 4)mobile phone
- 5)d a w
- 3 things it can do:
- 1)play instrument
- 2)record instrument
- 3)play recorded track
  */
 struct Producer
 {
@@ -311,16 +572,31 @@ struct Producer
     MobilePhone producersPhone;
     Daw producersDaw;
 
-    void playInstrument(Guitar, MidiKeyboard);
-    void recordInstrument(Laptop, Daw);
-    void playbackRecording(Laptop, Daw);
+    void playInstrument();
+    void recordInstrument();
+    void playbackRecording();
 };
- 
+
+void Producer::playInstrument()
+{
+    std::cout << "producer playing instrument" << std::endl;   
+}
+
+void Producer::recordInstrument() 
+{
+    std::cout << "recording" << std::endl;
+}
+
+void Producer::playbackRecording()
+{
+    std::cout << "playing" << std::endl;
+}
 
 #include <iostream>
 int main()
 {
-    std::cout << "go to go!"<< std::endl;
+    std::cout << "good to go !" << std::endl;
 }
-    
+
+
 
