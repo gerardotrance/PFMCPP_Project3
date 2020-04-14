@@ -75,7 +75,18 @@ struct MidiKeyboard
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
+    MidiKeyboard() { keys = 49; }
+
+    void amendKeys()
+    {
+      std::cout << "please type new amount of keys" << std::endl;
+      std::cin >> keys;
+      
+      std::cout << keys << " is the amount of keys you typed " << std::endl;
+    }
+
 };
+
 
 void MidiKeyboard::playMidiNotes(bool press)
 {
@@ -578,6 +589,10 @@ int main()
 {
     Example::main();
     std::cout << "good to go !" << std::endl;
+
+    MidiKeyboard keyboard;
+
+    keyboard.amendKeys();
 }
 
 
