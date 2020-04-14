@@ -1,3 +1,4 @@
+
  /*
  Project 3 - Part 3 / 5
  video: Chapter 2 - Part 8
@@ -140,10 +141,21 @@ struct Guitar
     int strings = 6;
     bool strum;
     bool muted;
-
+    std::string newMake;
+    
+    Guitar() { manufacturer = "akai"; }
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
+    
+    void printMake()
+    {
+        std::cout << "Please type guitars manufacturer" << std::endl;
+        std::cin >> newMake;
+        manufacturer = newMake;
+        std::cout << manufacturer << " is the manufacturer of this guitar." << std::endl;    
+    }
+
 };
 
 int Guitar::playNote(bool strumming) 
@@ -199,11 +211,24 @@ struct MobilePhone
     bool buttons = true;
     bool mic = true;
     bool speaker = true;
-    std::string brand = "sony"; 
+    std::string brand = "sony";
+    std::string newPhoneBrand;
+
+
+    MobilePhone() { brand = "sony"; } 
 
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
+
+    int welcomeOs()
+    {
+        std::cout << "What brand is our phone ? " << std::endl;
+        std::cin >> newPhoneBrand;
+        brand = newPhoneBrand;
+        std::cout << "Welcome to " << brand << std::endl;
+        return newPhoneBrand == brand;
+    }
 };
 
 void MobilePhone::makeCall(bool button, bool voice)
@@ -278,10 +303,16 @@ struct Daw
     bool plugins = true;
     bool stereoOutput = true;
     bool stereoInput = true;
-
+    Daw() {}
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
     float outputAudio(bool stereoOutput);
+    void pluginDetails();
+    {
+        std::cout << " tell me the plugins name ..."
+        std::cin >> pluginName ;
+        std::cout << pluginName << " is the plugin you are using. " << std::endl;
+    }
 };
 
 float Daw::recordMidi(bool presentPlugin , int midi)
@@ -593,7 +624,22 @@ int main()
     MidiKeyboard keyboard;
 
     keyboard.amendKeys();
+
+
+    Guitar makeOfGuitar;
+
+    makeOfGuitar.printMake();
+
+    MobilePhone phone;
+
+    phone.welcomeOs();
+    
+    return 0;
 }
+
+
+    
+
 
 
 
