@@ -303,14 +303,16 @@ struct Daw
     bool plugins = true;
     bool stereoOutput = true;
     bool stereoInput = true;
+    std::string pluginName = "massive";
     Daw() {}
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
     float outputAudio(bool stereoOutput);
-    void pluginDetails();
+    
+    void pluginDetails()
     {
-        std::cout << " tell me the plugins name ..."
-        std::cin >> pluginName ;
+        std::cout << " tell me the plugins name ..." << std::endl;
+        std::cin >> pluginName;
         std::cout << pluginName << " is the plugin you are using. " << std::endl;
     }
 };
@@ -351,11 +353,24 @@ struct Laptop
     bool keyboard = true;
     std::string password = "password";
     int hardDriveAvailableGb = 256;
+    int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
-
+    Laptop() {}
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
     float saveData(int hardDriveAvailableGb);
+    void hardDriveDetails()
+    {
+        std::cout << hardDriveAvailableGb << " Giga Bytes HD storage. " << std::endl;
+        if(hardDriveAvailableGb < 512)
+        {
+            std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl; 
+        }
+        else
+        {
+            std::cout << "you have used no hard drive space" << std::endl;
+        }    
+    }
 };
 
 void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
@@ -402,7 +417,8 @@ struct Television
     int heightCm = 60;
     int tvChannel = 1;
     bool onButton = true;
-    
+    int timeToRecord;
+    Television() {}
     struct RemoteControl
     {
         int numberButtons = 10;
@@ -415,7 +431,13 @@ struct Television
     void switchTvOn(bool onButton);
     void switchTvOff(bool onButton);
     int changeTvChannel(int tvChannel);
-
+    void recordTimer()
+    {
+        std::cout << "PLease tell me the time in 24h you wish to record" << std::endl;
+        std::cin >> timeToRecord;
+        std::cout << " Timer set for " << timeToRecord << "hr " << std::endl;
+    }
+    
     RemoteControl controlOff;
     RemoteControl controlOn;
 };
@@ -464,7 +486,7 @@ struct FishTank
     int lengthCm = 90;
     int gallons = 50;
     bool lightOn = true;
-
+    FishTank(){}
     struct Decor
     {
         bool livePlants = true;
@@ -480,7 +502,10 @@ struct FishTank
     void switchLightOn(bool lightOn);
     void switchHeaterOn(float waterTempCelcius);
     void feedFish(int gallons);
-
+    void printTemp()
+    {
+      std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;    
+    }
     Decor tropical, marine;
 };
 
@@ -523,70 +548,7 @@ void FishTank::feedFish(int aquariumSize)
         std::cout << "feed fish at least three times a week" << std::endl;
     }        
 }
-/*
- */
-struct Cinema
-{
-    int freeSeats = 100;
-    int seats = 100;
-    bool screenOn = true;
-    bool projectorOn = true;
-    int lightLevel = 10;
 
-    void playFilm(bool screenOn,bool projectorOn);
-    int setLightLevel(int lightLevel);
-    void sitCustomers(int seats, int freeSeats);
-};
-
-void Cinema::playFilm(bool screenPlaying, bool projectorPlaying)
-{
-    screenOn = screenPlaying;
-    projectorOn = projectorPlaying;
-
-    if(screenOn == true || projectorOn == true)
-    {
-        std::cout << "Quiet Please Movie is On" << std::endl;
-    }
-    else
-    {
-        std::cout << "Movie will Start soon" << std::endl;
-    } 
-}
-
-int Cinema::setLightLevel(int mood)
-{
-    lightLevel = mood;
-
-    if(lightLevel == 0)
-    {
-        return lightLevel + 1;
-    }
-    else if(lightLevel == 10)
-    {
-        return lightLevel - 1;
-    }
-    else
-    {
-        return lightLevel = 5;
-    }
-}
-
-void Cinema::sitCustomers(int seatNumber, int seatsAvailable)
-{
-    seats = seatNumber;
-    freeSeats = seatsAvailable;
-
-    if(freeSeats < 1)
-    {
-        std::cout << "Sorry all seats are taken" << std::endl;
-    }
-    else
-    {
-        std::cout << "Please select seat" << std::endl;
-    }
-}
-/*
- */
 struct Producer
 {
     Guitar producersGuitar;
@@ -633,8 +595,23 @@ int main()
     MobilePhone phone;
 
     phone.welcomeOs();
+
+    Daw cubase;
+
+    cubase.pluginDetails();
+
+    Laptop myLaptop;
+
+    myLaptop.hardDriveDetails();
+
+    Television myTelevision;
+
+    myTelevision.recordTimer();
+
+    FishTank aquarium;
+
+    aquarium.printTemp();
     
-    return 0;
 }
 
 
