@@ -65,7 +65,6 @@ int main()
 /*
  */
 #include<iostream>
-
 struct MidiKeyboard
 {
     int keys = 88;
@@ -77,7 +76,6 @@ struct MidiKeyboard
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     MidiKeyboard() { keys = 49; }
-
     void amendKeys()
     {
       std::cout << "please type new amount of keys" << std::endl;
@@ -85,9 +83,7 @@ struct MidiKeyboard
       
       std::cout << keys << " is the amount of keys you typed " << std::endl;
     }
-
 };
-
 
 void MidiKeyboard::playMidiNotes(bool press)
 {
@@ -130,9 +126,6 @@ void MidiKeyboard::controlMacros(bool macro)
         std::cout << "no mod wheel" << std::endl;
     }
 }
-/*
- */
-# include <string>
 
 struct Guitar
 {
@@ -142,12 +135,10 @@ struct Guitar
     bool strum;
     bool muted;
     std::string newMake;
-    
     Guitar() { manufacturer = "akai"; }
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
-    
     void printMake()
     {
         std::cout << "Please type guitars manufacturer" << std::endl;
@@ -155,7 +146,6 @@ struct Guitar
         manufacturer = newMake;
         std::cout << manufacturer << " is the manufacturer of this guitar." << std::endl;    
     }
-
 };
 
 int Guitar::playNote(bool strumming) 
@@ -201,9 +191,6 @@ void Guitar::playMuted(bool muteHeld, bool strumming)
         strings = 0;
     }
 }
-/*
- */
-# include <string> 
 
 struct MobilePhone
 {
@@ -213,10 +200,7 @@ struct MobilePhone
     bool speaker = true;
     std::string brand = "sony";
     std::string newPhoneBrand;
-
-
     MobilePhone() { brand = "sony"; } 
-
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
@@ -263,10 +247,13 @@ struct Game
     bool objects = true;
     bool enemies = true;
     int allies = 2;
-
+    Game(){}
     void play(int players);
     void pause(bool objects);
-    void exit();
+    void exit()
+    {
+        std::cout << players << " players end game " << std::endl;
+    }
 };
 
 void Game::play(int character)
@@ -288,11 +275,6 @@ void Game::pause(bool items)
     objects = items;
 
     std::cout << "Game Paused" << std::endl;
-}
-
-void Game::exit()
-{
-    std::cout << "Game Over" << std::endl;
 }
 /*
  */
@@ -571,7 +553,7 @@ struct Cinema
     {
         if(customers <= 100)
         {   
-            std::cout << freeSeats - customers << "is now the number of free seats." << std::endl;
+            std::cout << freeSeats - customers << " is now the number of free seats." << std::endl;
         }
         if(customers >= 101)
         {
@@ -589,10 +571,18 @@ struct Producer
     Laptop producersLaptop;
     MobilePhone producersPhone;
     Daw producersDaw;
+    std::string nameProducer;
+    Producer(){}
 
     void playInstrument();
     void recordInstrument();
     void playbackRecording();
+    void producersName()
+    {
+        std::cout << "type artists name." << std::endl;
+        std::cin >> nameProducer;
+        std::cout << nameProducer << " is the artists name !" << std::endl;
+    }
 };
 
 void Producer::playInstrument()
@@ -649,6 +639,14 @@ int main()
     multiplex.customerCount();
 
     multiplex.seatCounter();
+
+    Producer artist;
+
+    artist.producersName();
+
+    Game currentGame;
+
+    currentGame.exit();
 
     std::cout << "good to go !" << std::endl;
     
