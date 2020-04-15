@@ -549,6 +549,39 @@ void FishTank::feedFish(int aquariumSize)
     }        
 }
 
+struct Cinema
+{
+    int seats = 100;
+    int freeSeats = 100;
+    int lightLevel = 10;
+    float movieTime24hr = 20.30f;
+    int customers;
+    Cinema() {}
+
+    int customerCount()
+    {
+        std::cout << "How many seats do you require?" << std::endl;
+        std::cin >> customers;
+        std::cout << customers << " is the amount of customers." << std::endl;
+        
+        return customers;
+    }    
+    
+    int seatCounter()
+    {
+        if(customers <= 100)
+        {   
+            std::cout << freeSeats - customers << "is now the number of free seats." << std::endl;
+        }
+        if(customers >= 101)
+        {
+             std::cout << customers - 100 << " too many people." << std::endl; 
+        }
+        
+        return 0;
+    }
+};
+
 struct Producer
 {
     Guitar producersGuitar;
@@ -581,7 +614,6 @@ void Producer::playbackRecording()
 int main()
 {
     Example::main();
-    std::cout << "good to go !" << std::endl;
 
     MidiKeyboard keyboard;
 
@@ -611,6 +643,14 @@ int main()
     FishTank aquarium;
 
     aquarium.printTemp();
+
+    Cinema multiplex;
+
+    multiplex.customerCount();
+
+    multiplex.seatCounter();
+
+    std::cout << "good to go !" << std::endl;
     
 }
 
