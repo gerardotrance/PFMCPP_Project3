@@ -76,12 +76,9 @@ struct MidiKeyboard
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     MidiKeyboard() { keys = 49; }
-    void amendKeys()
+    void printKeys()
     {
-      std::cout << "please type new amount of keys" << std::endl;
-      std::cin >> keys;
-      
-      std::cout << keys << " is the amount of keys you typed " << std::endl;
+        std::cout << keys << " keys available." << std::endl;
     }
 };
 
@@ -141,10 +138,7 @@ struct Guitar
     void playMuted(bool muted, bool strum);
     void printMake()
     {
-        std::cout << "Please type guitars manufacturer" << std::endl;
-        std::cin >> newMake;
-        manufacturer = newMake;
-        std::cout << manufacturer << " is the manufacturer of this guitar." << std::endl;    
+        std::cout << manufacturer << " is the manufacturer of the guitar." << std::endl;    
     }
 };
 
@@ -199,19 +193,14 @@ struct MobilePhone
     bool mic = true;
     bool speaker = true;
     std::string brand = "sony";
-    std::string newPhoneBrand;
     MobilePhone() { brand = "sony"; } 
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
 
-    int welcomeOs()
+    void welcomeOs()
     {
-        std::cout << "What brand is our phone ? " << std::endl;
-        std::cin >> newPhoneBrand;
-        brand = newPhoneBrand;
-        std::cout << "Welcome to " << brand << std::endl;
-        return newPhoneBrand == brand;
+        std::cout << brand << " is this phones brand." << std::endl;
     }
 };
 
@@ -252,7 +241,7 @@ struct Game
     void pause(bool objects);
     void exit()
     {
-        std::cout << players << " players end game " << std::endl;
+        std::cout << levels << "th level. players end game. " << std::endl;
     }
 };
 
@@ -293,9 +282,7 @@ struct Daw
     
     void pluginDetails()
     {
-        std::cout << " tell me the plugins name ..." << std::endl;
-        std::cin >> pluginName;
-        std::cout << pluginName << " is the plugin you are using. " << std::endl;
+        std::cout << pluginName << " is your selected plugin." << std::endl; 
     }
 };
 
@@ -399,8 +386,8 @@ struct Television
     int heightCm = 60;
     int tvChannel = 1;
     bool onButton = true;
-    int timeToRecord;
     Television() {}
+    
     struct RemoteControl
     {
         int numberButtons = 10;
@@ -415,9 +402,7 @@ struct Television
     int changeTvChannel(int tvChannel);
     void recordTimer()
     {
-        std::cout << "PLease tell me the time in 24h you wish to record" << std::endl;
-        std::cin >> timeToRecord;
-        std::cout << " Timer set for " << timeToRecord << "hr " << std::endl;
+        std::cout << "Channel" << tvChannel << " set to record." << std::endl;
     }
     
     RemoteControl controlOff;
@@ -537,13 +522,11 @@ struct Cinema
     int freeSeats = 100;
     int lightLevel = 10;
     float movieTime24hr = 20.30f;
-    int customers;
+    int customers = 33;
     Cinema() {}
 
     int customerCount()
     {
-        std::cout << "How many seats do you require?" << std::endl;
-        std::cin >> customers;
         std::cout << customers << " is the amount of customers." << std::endl;
         
         return customers;
@@ -571,7 +554,7 @@ struct Producer
     Laptop producersLaptop;
     MobilePhone producersPhone;
     Daw producersDaw;
-    std::string nameProducer;
+    std::string nameProducer = " Dj Tempo ";
     Producer(){}
 
     void playInstrument();
@@ -579,8 +562,6 @@ struct Producer
     void playbackRecording();
     void producersName()
     {
-        std::cout << "type artists name." << std::endl;
-        std::cin >> nameProducer;
         std::cout << nameProducer << " is the artists name !" << std::endl;
     }
 };
@@ -607,7 +588,7 @@ int main()
 
     MidiKeyboard keyboard;
 
-    keyboard.amendKeys();
+    keyboard.printKeys();
 
 
     Guitar makeOfGuitar;
