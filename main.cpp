@@ -71,11 +71,11 @@ struct MidiKeyboard
     bool pitchWheel = true;
     bool modWheel = true;
     bool keyPressed = false;
+    MidiKeyboard() { keys = 49;}
     
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
-    MidiKeyboard() { keys = 49; }
     void printKeys()
     {
         std::cout << keys << " keys available." << std::endl;
@@ -133,6 +133,7 @@ struct Guitar
     bool muted;
     std::string newMake;
     Guitar() { manufacturer = "akai"; }
+    
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
@@ -194,10 +195,10 @@ struct MobilePhone
     bool speaker = true;
     std::string brand = "sony";
     MobilePhone() { brand = "sony"; } 
+    
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
-
     void welcomeOs()
     {
         std::cout << brand << " is this phones brand." << std::endl;
@@ -237,6 +238,7 @@ struct Game
     bool enemies = true;
     int allies = 2;
     Game(){}
+    
     void play(int players);
     void pause(bool objects);
     void exit()
@@ -276,10 +278,10 @@ struct Daw
     bool stereoInput = true;
     std::string pluginName = "massive";
     Daw() {}
+    
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
     float outputAudio(bool stereoOutput);
-    
     void pluginDetails()
     {
         std::cout << pluginName << " is your selected plugin." << std::endl; 
@@ -325,6 +327,7 @@ struct Laptop
     int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
     Laptop() {}
+    
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
     float saveData(int hardDriveAvailableGb);
@@ -360,7 +363,6 @@ void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
     {
         std::cout << "enter password" << std::endl;
     }
-
 }
 
 float Laptop::produceOutput(bool graphics, int RAM)
@@ -454,6 +456,7 @@ struct FishTank
     int gallons = 50;
     bool lightOn = true;
     FishTank(){}
+    
     struct Decor
     {
         bool livePlants = true;
