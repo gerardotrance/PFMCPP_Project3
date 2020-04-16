@@ -446,7 +446,7 @@ void Television::switchTvOff(bool status)
 }
 /*
  */
-#include<iostream>
+#include<iostream> FIXME this has already been included.  remove this line
 
 struct FishTank
 {
@@ -631,6 +631,8 @@ int main()
     Game currentGame;
 
     currentGame.exit();
+
+    FIXME you forgot instruction 5)
 
     std::cout << "good to go !" << std::endl;
     
