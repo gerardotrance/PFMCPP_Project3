@@ -276,7 +276,7 @@ struct Daw
     bool plugins = true;
     bool stereoOutput = true;
     bool stereoInput = true;
-    std::string pluginName = "massive";
+    std::string pluginName = "spire";
     Daw() {}
     
     float recordMidi(bool plugins, int midiTracks);
@@ -446,7 +446,6 @@ void Television::switchTvOff(bool status)
 }
 /*
  */
-#include<iostream> FIXME this has already been included.  remove this line
 
 struct FishTank
 {
@@ -632,7 +631,17 @@ int main()
 
     currentGame.exit();
 
-    FIXME you forgot instruction 5)
+    std::cout << multiplex.seats << std::endl;
+
+    std::cout << multiplex.movieTime24hr << std::endl;
+
+    std::cout << aquarium.waterTempCelcius << std::endl;
+
+    std::cout << aquarium.gallons << std::endl;
+
+    std::cout << cubase.pluginName << std::endl;
+
+    std::cout << cubase.audioTracks << std::endl;
 
     std::cout << "good to go !" << std::endl;
     
