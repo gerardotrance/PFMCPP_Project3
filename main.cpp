@@ -44,36 +44,6 @@ int main()
 //call Example::main()
 
 
-#include <iostream>
-namespace Example 
-{
-struct UDT  // my user defined type named 'UDT'
-{
-    int a; //a member variable
-    UDT() { a = 0; }             //1) the constructor
-    void printThing()            //the member function
-    {
-        std::cout << "UDT::printThing() " << a << std::endl;  //2) printing out something interesting
-    }
-};
-
-int main()
-{
-    UDT foo;              //3) instantiating a UDT named 'foo' in main()
-    foo.printThing();     //4) calling a member function of the UDT instance.
-    
-    //5) a std::cout statement accessing foo's member variable.
-    //It also demonstrates a 'ternary expression', which is syntactic shorthand for an 'if/else' expression
-    std::cout << "Is foo's member var 'a' equal to 0? " << (foo.a == 0 ? "Yes" : "No") << "\n";
-    
-    return 0;
-}
-}
-
-//insert Example::main() into main() of user's repo.
-
-
-
 /*
  */
 #include<iostream>
