@@ -1,3 +1,4 @@
+
  /*
  Project 3 - Part 3 / 5
  video: Chapter 2 - Part 8
@@ -64,17 +65,21 @@ int main()
 /*
  */
 #include<iostream>
-
 struct MidiKeyboard
 {
     int keys = 88;
     bool pitchWheel = true;
     bool modWheel = true;
     bool keyPressed = false;
+    MidiKeyboard() { keys = 49;}
     
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
+    void printKeys()
+    {
+        std::cout << keys << " keys available." << std::endl;
+    }
 };
 
 void MidiKeyboard::playMidiNotes(bool press)
@@ -118,9 +123,6 @@ void MidiKeyboard::controlMacros(bool macro)
         std::cout << "no mod wheel" << std::endl;
     }
 }
-/*
- */
-# include <string>
 
 struct Guitar
 {
@@ -129,10 +131,16 @@ struct Guitar
     int strings = 6;
     bool strum;
     bool muted;
-
+    std::string newMake;
+    Guitar() { manufacturer = "akai"; }
+    
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
+    void printMake()
+    {
+        std::cout << manufacturer << " is the manufacturer of the guitar." << std::endl;    
+    }
 };
 
 int Guitar::playNote(bool strumming) 
@@ -178,9 +186,6 @@ void Guitar::playMuted(bool muteHeld, bool strumming)
         strings = 0;
     }
 }
-/*
- */
-# include <string> 
 
 struct MobilePhone
 {
@@ -188,11 +193,16 @@ struct MobilePhone
     bool buttons = true;
     bool mic = true;
     bool speaker = true;
-    std::string brand = "sony"; 
-
+    std::string brand = "sony";
+    MobilePhone() { brand = "sony"; } 
+    
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
+    void welcomeOs()
+    {
+        std::cout << brand << " is this phones brand." << std::endl;
+    }
 };
 
 void MobilePhone::makeCall(bool button, bool voice)
@@ -227,10 +237,14 @@ struct Game
     bool objects = true;
     bool enemies = true;
     int allies = 2;
-
+    Game(){}
+    
     void play(int players);
     void pause(bool objects);
-    void exit();
+    void exit()
+    {
+        std::cout << levels << "th level. players end game. " << std::endl;
+    }
 };
 
 void Game::play(int character)
@@ -253,11 +267,6 @@ void Game::pause(bool items)
 
     std::cout << "Game Paused" << std::endl;
 }
-
-void Game::exit()
-{
-    std::cout << "Game Over" << std::endl;
-}
 /*
  */
 struct Daw
@@ -267,10 +276,16 @@ struct Daw
     bool plugins = true;
     bool stereoOutput = true;
     bool stereoInput = true;
-
+    std::string pluginName = "spire";
+    Daw() {}
+    
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
     float outputAudio(bool stereoOutput);
+    void pluginDetails()
+    {
+        std::cout << pluginName << " is your selected plugin." << std::endl; 
+    }
 };
 
 float Daw::recordMidi(bool presentPlugin , int midi)
@@ -309,11 +324,25 @@ struct Laptop
     bool keyboard = true;
     std::string password = "password";
     int hardDriveAvailableGb = 256;
+    int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
-
+    Laptop() {}
+    
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
     float saveData(int hardDriveAvailableGb);
+    void hardDriveDetails()
+    {
+        std::cout << hardDriveAvailableGb << " Giga Bytes HD storage. " << std::endl;
+        if(hardDriveAvailableGb < 512)
+        {
+            std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl; 
+        }
+        else
+        {
+            std::cout << "you have used no hard drive space" << std::endl;
+        }    
+    }
 };
 
 void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
@@ -334,7 +363,6 @@ void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
     {
         std::cout << "enter password" << std::endl;
     }
-
 }
 
 float Laptop::produceOutput(bool graphics, int RAM)
@@ -360,6 +388,7 @@ struct Television
     int heightCm = 60;
     int tvChannel = 1;
     bool onButton = true;
+    Television() {}
     
     struct RemoteControl
     {
@@ -373,7 +402,11 @@ struct Television
     void switchTvOn(bool onButton);
     void switchTvOff(bool onButton);
     int changeTvChannel(int tvChannel);
-
+    void recordTimer()
+    {
+        std::cout << "Channel" << tvChannel << " set to record." << std::endl;
+    }
+    
     RemoteControl controlOff;
     RemoteControl controlOn;
 };
@@ -413,7 +446,6 @@ void Television::switchTvOff(bool status)
 }
 /*
  */
-#include<iostream>
 
 struct FishTank
 {
@@ -422,7 +454,8 @@ struct FishTank
     int lengthCm = 90;
     int gallons = 50;
     bool lightOn = true;
-
+    FishTank(){}
+    
     struct Decor
     {
         bool livePlants = true;
@@ -438,7 +471,10 @@ struct FishTank
     void switchLightOn(bool lightOn);
     void switchHeaterOn(float waterTempCelcius);
     void feedFish(int gallons);
-
+    void printTemp()
+    {
+      std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;    
+    }
     Decor tropical, marine;
 };
 
@@ -481,70 +517,38 @@ void FishTank::feedFish(int aquariumSize)
         std::cout << "feed fish at least three times a week" << std::endl;
     }        
 }
-/*
- */
+
 struct Cinema
 {
-    int freeSeats = 100;
     int seats = 100;
-    bool screenOn = true;
-    bool projectorOn = true;
+    int freeSeats = 100;
     int lightLevel = 10;
+    float movieTime24hr = 20.30f;
+    int customers = 33;
+    Cinema() {}
 
-    void playFilm(bool screenOn,bool projectorOn);
-    int setLightLevel(int lightLevel);
-    void sitCustomers(int seats, int freeSeats);
+    int customerCount()
+    {
+        std::cout << customers << " is the amount of customers." << std::endl;
+        
+        return customers;
+    }    
+    
+    int seatCounter()
+    {
+        if(customers <= 100)
+        {   
+            std::cout << freeSeats - customers << " is now the number of free seats." << std::endl;
+        }
+        if(customers >= 101)
+        {
+             std::cout << customers - 100 << " too many people." << std::endl; 
+        }
+        
+        return 0;
+    }
 };
 
-void Cinema::playFilm(bool screenPlaying, bool projectorPlaying)
-{
-    screenOn = screenPlaying;
-    projectorOn = projectorPlaying;
-
-    if(screenOn == true || projectorOn == true)
-    {
-        std::cout << "Quiet Please Movie is On" << std::endl;
-    }
-    else
-    {
-        std::cout << "Movie will Start soon" << std::endl;
-    } 
-}
-
-int Cinema::setLightLevel(int mood)
-{
-    lightLevel = mood;
-
-    if(lightLevel == 0)
-    {
-        return lightLevel + 1;
-    }
-    else if(lightLevel == 10)
-    {
-        return lightLevel - 1;
-    }
-    else
-    {
-        return lightLevel = 5;
-    }
-}
-
-void Cinema::sitCustomers(int seatNumber, int seatsAvailable)
-{
-    seats = seatNumber;
-    freeSeats = seatsAvailable;
-
-    if(freeSeats < 1)
-    {
-        std::cout << "Sorry all seats are taken" << std::endl;
-    }
-    else
-    {
-        std::cout << "Please select seat" << std::endl;
-    }
-}
-/*
- */
 struct Producer
 {
     Guitar producersGuitar;
@@ -552,10 +556,16 @@ struct Producer
     Laptop producersLaptop;
     MobilePhone producersPhone;
     Daw producersDaw;
+    std::string nameProducer = " Dj Tempo ";
+    Producer(){}
 
     void playInstrument();
     void recordInstrument();
     void playbackRecording();
+    void producersName()
+    {
+        std::cout << nameProducer << " is the artists name !" << std::endl;
+    }
 };
 
 void Producer::playInstrument()
@@ -577,8 +587,69 @@ void Producer::playbackRecording()
 int main()
 {
     Example::main();
+
+    MidiKeyboard keyboard;
+
+    keyboard.printKeys();
+
+
+    Guitar makeOfGuitar;
+
+    makeOfGuitar.printMake();
+
+    MobilePhone phone;
+
+    phone.welcomeOs();
+
+    Daw cubase;
+
+    cubase.pluginDetails();
+
+    Laptop myLaptop;
+
+    myLaptop.hardDriveDetails();
+
+    Television myTelevision;
+
+    myTelevision.recordTimer();
+
+    FishTank aquarium;
+
+    aquarium.printTemp();
+
+    Cinema multiplex;
+
+    multiplex.customerCount();
+
+    multiplex.seatCounter();
+
+    Producer artist;
+
+    artist.producersName();
+
+    Game currentGame;
+
+    currentGame.exit();
+
+    std::cout << multiplex.seats << std::endl;
+
+    std::cout << multiplex.movieTime24hr << std::endl;
+
+    std::cout << aquarium.waterTempCelcius << std::endl;
+
+    std::cout << aquarium.gallons << std::endl;
+
+    std::cout << cubase.pluginName << std::endl;
+
+    std::cout << cubase.audioTracks << std::endl;
+
     std::cout << "good to go !" << std::endl;
+    
 }
+
+
+    
+
 
 
 
