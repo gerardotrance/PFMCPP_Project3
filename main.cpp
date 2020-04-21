@@ -180,12 +180,19 @@ void Guitar::playMuted(bool muteHeld, bool strumming)
 
 struct MobilePhone
 {
-    bool screen = true;
-    bool buttons = true;
-    bool mic = true;
-    bool speaker = true;
-    std::string brand = "sony";
-    MobilePhone() { brand = "sony"; } 
+    bool screen;
+    bool buttons;
+    bool mic;
+    bool speaker;
+    std::string brand;
+    MobilePhone()
+    {
+        screen = true;
+        buttons = true;
+        mic = true;
+        speaker = true;
+        brand = "sony";
+    } 
     
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
@@ -228,7 +235,7 @@ struct Game
     bool objects = true;
     bool enemies = true;
     int allies = 2;
-    Game(){}
+    Game();
     
     void play(int players);
     void pause(bool objects);
@@ -237,6 +244,8 @@ struct Game
         std::cout << levels << "th level. players end game. " << std::endl;
     }
 };
+
+Game:: Game() : players(1), levels(12), objects(true), enemies(false), allies(1){}
 
 void Game::play(int character)
 {
@@ -268,7 +277,7 @@ struct Daw
     bool stereoOutput = true;
     bool stereoInput = true;
     std::string pluginName = "spire";
-    Daw() {}
+    Daw(){}
     
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
@@ -317,7 +326,15 @@ struct Laptop
     int hardDriveAvailableGb = 256;
     int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
-    Laptop() {}
+    Laptop()
+    {
+        screenResolution = 8000;
+        keyboard = true;
+        password = "new password";
+        hardDriveAvailableGb = 512;
+        hardDriveUsed = 0;
+        memoryGb = 16;
+    }
     
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
@@ -379,7 +396,7 @@ struct Television
     int heightCm = 60;
     int tvChannel = 1;
     bool onButton = true;
-    Television() {}
+    Television();
     
     struct RemoteControl
     {
@@ -397,10 +414,9 @@ struct Television
     {
         std::cout << "Channel" << tvChannel << " set to record." << std::endl;
     }
-    
-    RemoteControl controlOff;
-    RemoteControl controlOn;
 };
+
+Television:: Television() : tvChannel(2){}
 
 void Television::switchTvOn(bool status)
 {
@@ -445,7 +461,7 @@ struct FishTank
     int lengthCm = 90;
     int gallons = 50;
     bool lightOn = true;
-    FishTank(){}
+    FishTank();
     
     struct Decor
     {
@@ -468,6 +484,8 @@ struct FishTank
     }
     Decor tropical, marine;
 };
+
+FishTank:: FishTank() : waterTempCelcius(29.0f), gallons(75){}
 
 void FishTank::switchLightOn(bool lighting)
 {
@@ -548,7 +566,7 @@ struct Producer
     MobilePhone producersPhone;
     Daw producersDaw;
     std::string nameProducer = " Dj Tempo ";
-    Producer(){}
+    Producer();
 
     void playInstrument();
     void recordInstrument();
@@ -558,6 +576,8 @@ struct Producer
         std::cout << nameProducer << " is the artists name !" << std::endl;
     }
 };
+
+Producer:: Producer() : nameProducer(" House Cat"){}
 
 void Producer::playInstrument()
 {
