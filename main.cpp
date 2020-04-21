@@ -49,18 +49,23 @@ int main()
 #include<iostream>
 struct MidiKeyboard
 {
-    int keys = 88;
-    bool pitchWheel = true;
-    bool modWheel = true;
-    bool keyPressed = false;
-    MidiKeyboard() { keys = 49;}
-    
+    int keys;
+    bool pitchWheel, modWheel, keyPressed;
+
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     void printKeys()
     {
         std::cout << keys << " keys available." << std::endl;
+    }
+
+    MidiKeyboard()
+    { 
+        keys = 32;
+        pitchWheel = true;
+        modWheel = true;
+        keyPressed = false;
     }
 };
 
@@ -108,22 +113,26 @@ void MidiKeyboard::controlMacros(bool macro)
 
 struct Guitar
 {
-    std::string manufacturer = "akai";
-    bool neck = true;
-    int strings = 6;
+    std::string manufacturer;
+    bool neck;
+    int strings;
     bool strum;
     bool muted;
     std::string newMake;
-    Guitar() { manufacturer = "akai"; }
-    
+    Guitar();
+
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
     void printMake()
     {
-        std::cout << manufacturer << " is the manufacturer of the guitar." << std::endl;    
+        std::cout << manufacturer << " is the make of this guitar." << std::endl;
     }
+    
 };
+
+Guitar:: Guitar():  manufacturer("gibson"), strings(12), strum(false), muted(false), newMake("gibson"){}
+
 
 int Guitar::playNote(bool strumming) 
 {
@@ -573,7 +582,6 @@ int main()
     MidiKeyboard keyboard;
 
     keyboard.printKeys();
-
 
     Guitar makeOfGuitar;
 
