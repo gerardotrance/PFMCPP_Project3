@@ -186,14 +186,7 @@ struct MobilePhone
     bool mic;
     bool speaker;
     std::string brand;
-    MobilePhone()
-    {
-        screen = true;
-        buttons = true;
-        mic = true;
-        speaker = true;
-        brand = "sony";
-    } 
+    MobilePhone();
     
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
@@ -201,6 +194,14 @@ struct MobilePhone
     void welcomeOs();
 };
 
+MobilePhone::MobilePhone()
+{
+    screen = true;
+    buttons = true;
+    mic = true;
+    speaker = true;
+    brand = "sony";
+}
 void MobilePhone::welcomeOs()
 {
     std::cout << brand << " is the phones brand." << std::endl;
@@ -332,21 +333,23 @@ struct Laptop
     int hardDriveAvailableGb = 256;
     int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
-    Laptop()
-    {
-        screenResolution = 8000;
-        keyboard = true;
-        password = "new password";
-        hardDriveAvailableGb = 512;
-        hardDriveUsed = 0;
-        memoryGb = 16;
-    }
+    Laptop();
     
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
     float saveData(int hardDriveAvailableGb);
     void hardDriveDetails();
 };
+
+Laptop::Laptop()
+{
+    screenResolution = 8000;
+    keyboard = true;
+    password = "new password";
+    hardDriveAvailableGb = 512;
+    hardDriveUsed = 100;
+    memoryGb = 16;    
+}
 
 void Laptop::hardDriveDetails()
 {
