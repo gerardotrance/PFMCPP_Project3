@@ -44,55 +44,31 @@ int main()
 //call Example::main()
 
 
-#include <iostream>
-namespace Example 
-{
-struct UDT  // my user defined type named 'UDT'
-{
-    int a; //a member variable
-    UDT() { a = 0; }             //1) the constructor
-    void printThing()            //the member function
-    {
-        std::cout << "UDT::printThing() " << a << std::endl;  //2) printing out something interesting
-    }
-};
-
-int main()
-{
-    UDT foo;              //3) instantiating a UDT named 'foo' in main()
-    foo.printThing();     //4) calling a member function of the UDT instance.
-    
-    //5) a std::cout statement accessing foo's member variable.
-    //It also demonstrates a 'ternary expression', which is syntactic shorthand for an 'if/else' expression
-    std::cout << "Is foo's member var 'a' equal to 0? " << (foo.a == 0 ? "Yes" : "No") << "\n";
-    
-    return 0;
-}
-}
-
-//insert Example::main() into main() of user's repo.
-
-
-
 /*
  */
 #include<iostream>
 struct MidiKeyboard
 {
-    int keys = 88;
-    bool pitchWheel = true;
-    bool modWheel = true;
-    bool keyPressed = false;
-    MidiKeyboard() { keys = 49;}
-    
+    int keys;
+    bool pitchWheel, modWheel, keyPressed;
+
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
-    void printKeys()
-    {
-        std::cout << keys << " keys available." << std::endl;
+    void printKeys();
+
+    MidiKeyboard()
+    { 
+        keys = 32;
+        pitchWheel = true;
+        modWheel = true;
+        keyPressed = false;
     }
 };
+void MidiKeyboard::printKeys()
+{
+    std::cout << keys << " keys available." << std::endl;
+}
 
 void MidiKeyboard::playMidiNotes(bool press)
 {
@@ -138,22 +114,26 @@ void MidiKeyboard::controlMacros(bool macro)
 
 struct Guitar
 {
-    std::string manufacturer = "akai";
-    bool neck = true;
-    int strings = 6;
+    std::string manufacturer;
+    bool neck;
+    int strings;
     bool strum;
     bool muted;
     std::string newMake;
-    Guitar() { manufacturer = "akai"; }
-    
+    Guitar();
+
     int playNote(bool strum);
     void playChord(int stringNumber, bool strum); 
     void playMuted(bool muted, bool strum);
-    void printMake()
-    {
-        std::cout << manufacturer << " is the manufacturer of the guitar." << std::endl;    
-    }
+    void printMake();
 };
+
+Guitar::Guitar():  manufacturer("gibson"), strings(12), strum(false), muted(false), newMake("gibson"){}
+
+void Guitar::printMake()
+{
+    std::cout << manufacturer << " is the make of this guitar." << std::endl;
+}
 
 int Guitar::playNote(bool strumming) 
 {
@@ -201,22 +181,31 @@ void Guitar::playMuted(bool muteHeld, bool strumming)
 
 struct MobilePhone
 {
-    bool screen = true;
-    bool buttons = true;
-    bool mic = true;
-    bool speaker = true;
-    std::string brand = "sony";
-    MobilePhone() { brand = "sony"; } 
+    bool screen;
+    bool buttons;
+    bool mic;
+    bool speaker;
+    std::string brand;
+    MobilePhone();
     
     void makeCall(bool buttons, bool mic);
     void answerCall(bool buttons, bool mic);
     void sendText(bool screen, bool buttons);
-    void welcomeOs()
-    {
-        std::cout << brand << " is this phones brand." << std::endl;
-    }
+    void welcomeOs();
 };
 
+MobilePhone::MobilePhone()
+{
+    screen = true;
+    buttons = true;
+    mic = true;
+    speaker = true;
+    brand = "sony";
+}
+void MobilePhone::welcomeOs()
+{
+    std::cout << brand << " is the phones brand." << std::endl;
+}
 void MobilePhone::makeCall(bool button, bool voice)
 {
     buttons = button;
@@ -249,15 +238,19 @@ struct Game
     bool objects = true;
     bool enemies = true;
     int allies = 2;
-    Game(){}
+    Game();
     
     void play(int players);
     void pause(bool objects);
-    void exit()
-    {
-        std::cout << levels << "th level. players end game. " << std::endl;
-    }
+    void exit();
 };
+
+Game::Game() : players(1), levels(12), objects(true), enemies(false), allies(1){}
+
+void Game::exit()
+{
+    std::cout << levels << "th level. players end game." << std::endl;
+}
 
 void Game::play(int character)
 {
@@ -289,16 +282,18 @@ struct Daw
     bool stereoOutput = true;
     bool stereoInput = true;
     std::string pluginName = "spire";
-    Daw() {}
+    Daw(){}
     
     float recordMidi(bool plugins, int midiTracks);
     float recordAudio(int audioTracks, bool stereoInput);
     float outputAudio(bool stereoOutput);
-    void pluginDetails()
-    {
-        std::cout << pluginName << " is your selected plugin." << std::endl; 
-    }
+    void pluginDetails();
 };
+
+void Daw::pluginDetails()
+{
+    std::cout << pluginName << " is your selected plugin." << std::endl;
+}
 
 float Daw::recordMidi(bool presentPlugin , int midi)
 {
@@ -338,24 +333,36 @@ struct Laptop
     int hardDriveAvailableGb = 256;
     int hardDriveUsed = 512 - hardDriveAvailableGb;
     int memoryGb = 8; 
-    Laptop() {}
+    Laptop();
     
     void receiveInput(bool keyboard, std::string password, int memoryGb);
     float produceOutput(bool screenResolution, int memoryGb);
     float saveData(int hardDriveAvailableGb);
-    void hardDriveDetails()
-    {
-        std::cout << hardDriveAvailableGb << " Giga Bytes HD storage. " << std::endl;
-        if(hardDriveAvailableGb < 512)
-        {
-            std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl; 
-        }
-        else
-        {
-            std::cout << "you have used no hard drive space" << std::endl;
-        }    
-    }
+    void hardDriveDetails();
 };
+
+Laptop::Laptop()
+{
+    screenResolution = 8000;
+    keyboard = true;
+    password = "new password";
+    hardDriveAvailableGb = 512;
+    hardDriveUsed = 100;
+    memoryGb = 16;    
+}
+
+void Laptop::hardDriveDetails()
+{
+    std::cout << hardDriveAvailableGb << " Giga Bytes HD storage." << std::endl;
+    if(hardDriveAvailableGb < 512)
+    {
+        std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl;
+    }
+    else
+    {
+        std::cout << "you have used no hard drive space." << std::endl;
+    }  
+}
 
 void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
 {
@@ -400,7 +407,7 @@ struct Television
     int heightCm = 60;
     int tvChannel = 1;
     bool onButton = true;
-    Television() {}
+    Television();
     
     struct RemoteControl
     {
@@ -414,14 +421,15 @@ struct Television
     void switchTvOn(bool onButton);
     void switchTvOff(bool onButton);
     int changeTvChannel(int tvChannel);
-    void recordTimer()
-    {
-        std::cout << "Channel" << tvChannel << " set to record." << std::endl;
-    }
-    
-    RemoteControl controlOff;
-    RemoteControl controlOn;
+    void recordTimer();
 };
+
+Television::Television() : tvChannel(2){}
+
+void Television::recordTimer()
+{
+    std::cout << "Channel " << tvChannel << " set to record." << std::endl;
+}
 
 void Television::switchTvOn(bool status)
 {
@@ -466,7 +474,7 @@ struct FishTank
     int lengthCm = 90;
     int gallons = 50;
     bool lightOn = true;
-    FishTank(){}
+    FishTank();
     
     struct Decor
     {
@@ -483,12 +491,17 @@ struct FishTank
     void switchLightOn(bool lightOn);
     void switchHeaterOn(float waterTempCelcius);
     void feedFish(int gallons);
-    void printTemp()
-    {
-      std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;    
-    }
+    void printTemp();
+
     Decor tropical, marine;
 };
+
+FishTank::FishTank() : waterTempCelcius(29.0f), gallons(75){}
+
+void FishTank::printTemp()
+{
+    std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;
+}
 
 void FishTank::switchLightOn(bool lighting)
 {
@@ -537,29 +550,34 @@ struct Cinema
     int lightLevel = 10;
     float movieTime24hr = 20.30f;
     int customers = 33;
-    Cinema() {}
+    Cinema();
 
-    int customerCount()
-    {
-        std::cout << customers << " is the amount of customers." << std::endl;
-        
-        return customers;
-    }    
-    
-    int seatCounter()
-    {
-        if(customers <= 100)
-        {   
-            std::cout << freeSeats - customers << " is now the number of free seats." << std::endl;
-        }
-        if(customers >= 101)
-        {
-             std::cout << customers - 100 << " too many people." << std::endl; 
-        }
-        
-        return 0;
-    }
+    int customerCount();
+    int seatCounter();
 };
+Cinema::Cinema() : seats(50){}
+
+int Cinema::customerCount()
+{
+    std::cout << customers << " is the amount of customers." << std::endl;
+        
+    return customers;
+}    
+    
+int Cinema::seatCounter()
+{
+    if(customers <= 100)
+    {   
+        std::cout << freeSeats - customers << " is now the number of free seats." << std::endl;
+    }
+    if(customers >= 101)
+    {
+        std::cout << customers - 100 << " too many people." << std::endl; 
+    }
+        
+    return 0;
+}
+
 
 struct Producer
 {
@@ -569,16 +587,20 @@ struct Producer
     MobilePhone producersPhone;
     Daw producersDaw;
     std::string nameProducer = " Dj Tempo ";
-    Producer(){}
+    Producer();
 
     void playInstrument();
     void recordInstrument();
     void playbackRecording();
-    void producersName()
-    {
-        std::cout << nameProducer << " is the artists name !" << std::endl;
-    }
+    void producersName();
 };
+
+Producer::Producer() : nameProducer(" House Cat"){}
+
+void Producer::producersName()
+{
+    std::cout << nameProducer << " is the artists name !" << std::endl;  
+}
 
 void Producer::playInstrument()
 {
@@ -603,7 +625,6 @@ int main()
     MidiKeyboard keyboard;
 
     keyboard.printKeys();
-
 
     Guitar makeOfGuitar;
 
