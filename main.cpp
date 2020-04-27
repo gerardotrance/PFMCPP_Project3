@@ -585,8 +585,10 @@ struct Cinema
 
     int customerCount();
     int seatCounter();
+    int customerWhile();
+    int seatCountdown();
 };
-Cinema::Cinema() : seats(50){}
+Cinema::Cinema() : seats(100){}
 
 int Cinema::customerCount()
 {
@@ -609,6 +611,20 @@ int Cinema::seatCounter()
     return 0;
 }
 
+int Cinema::seatCountdown()
+{
+    while(seats > 0)
+    {
+        std::cout << seats << " seats left!" << std::endl;
+        --seats;
+    }
+    while(seats <= 0)
+    {
+        std::cout << " all seats gone " << std::endl;
+        ++seats = 100;
+    }
+    return 0;
+}
 
 struct Producer
 {
@@ -683,9 +699,9 @@ int main()
 
     Cinema multiplex;
 
-    multiplex.customerCount();
+    multiplex.customerWhile();
 
-    multiplex.seatCounter();
+    multiplex.customerCount();
 
     Producer artist;
 
@@ -708,6 +724,10 @@ int main()
     std::cout << cubase.audioTracks << std::endl;
 
     std::cout << "good to go !" << std::endl;
+
+    Cinema seatcounter;
+
+    seatcounter.seatCountdown();
     
 }
 
