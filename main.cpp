@@ -379,8 +379,8 @@ Laptop::Laptop()
     screenResolution = 8000;
     keyboard = true;
     password = "new password";
-    hardDriveAvailableGb = 512;
-    hardDriveUsed = 100;
+    hardDriveAvailableGb = 256;
+    hardDriveUsed = 256;
     memoryGb = 16;    
 }
 
@@ -391,10 +391,12 @@ void Laptop::hardDriveDetails()
     {
         std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl;
     }
-    else
+    while(hardDriveUsed > 0)
     {
-        std::cout << "you have used no hard drive space." << std::endl;
-    }  
+        std::cout << " UPDATE PROCESSING " << hardDriveUsed << " GigaBytes" << std::endl;
+        hardDriveUsed -= 16;
+    }
+    std::cout << "Hard Disk Ready To Use!" << std::endl;    
 }
 
 void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
