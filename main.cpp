@@ -80,7 +80,7 @@ int main()
 #include<iostream>
 struct MidiKeyboard
 {
-    int keys;
+    int keys, pitch;
     bool pitchWheel, modWheel, keyPressed;
 
     void playMidiNotes(bool keyPressed);
@@ -94,8 +94,10 @@ struct MidiKeyboard
         pitchWheel = true;
         modWheel = true;
         keyPressed = false;
+        pitch = 0;
     }
 };
+
 void MidiKeyboard::printKeys()
 {
     std::cout << keys << " keys available." << std::endl;
@@ -523,11 +525,12 @@ struct FishTank
     void switchHeaterOn(float waterTempCelcius);
     void feedFish(int gallons);
     void printTemp();
+    void changeTemp();
 
     Decor tropical, marine;
 };
 
-FishTank::FishTank() : waterTempCelcius(29.0f), gallons(75){}
+FishTank::FishTank() : waterTempCelcius(24.0f), gallons(75){}
 
 void FishTank::printTemp()
 {
@@ -585,8 +588,7 @@ struct Cinema
 
     int customerCount();
     int seatCounter();
-    int customerWhile();
-    int seatCountdown();
+    void seatCountdown();
 };
 Cinema::Cinema() : seats(100){}
 
@@ -611,7 +613,7 @@ int Cinema::seatCounter()
     return 0;
 }
 
-int Cinema::seatCountdown()
+void Cinema::seatCountdown()
 {
     while(seats > 0)
     {
@@ -621,9 +623,9 @@ int Cinema::seatCountdown()
     while(seats <= 0)
     {
         std::cout << " all seats gone " << std::endl;
-        ++seats = 100;
+        ++seats;
+        seats = 100;
     }
-    return 0;
 }
 
 struct Producer
@@ -699,8 +701,6 @@ int main()
 
     Cinema multiplex;
 
-    multiplex.customerWhile();
-
     multiplex.customerCount();
 
     Producer artist;
@@ -728,7 +728,9 @@ int main()
     Cinema seatcounter;
 
     seatcounter.seatCountdown();
-    
+
+
+
 }
 
 
