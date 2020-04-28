@@ -393,7 +393,7 @@ void Laptop::hardDriveDetails()
     }
     while(hardDriveUsed > 0)
     {
-        std::cout << " UPDATE PROCESSING " << hardDriveUsed << " GigaBytes" << std::endl;
+        std::cout << " UPDATE PROCESSING " << hardDriveUsed << " GigaBytes used" << std::endl;
         hardDriveUsed -= 16;
     }
     std::cout << "Hard Disk Ready To Use!" << std::endl;    
@@ -524,7 +524,7 @@ struct FishTank
     };
 
     void switchLightOn(bool lightOn);
-    void switchHeaterOn(int waterTempCelcius);
+    void switchHeaterOn();
     void feedFish(int gallons);
     void printTemp();
     int tempAlert();
@@ -560,7 +560,7 @@ void FishTank::switchLightOn(bool lighting)
     std::cout << "light is on" << std::endl;
 }
 
-void FishTank::switchHeaterOn(int waterTempCelcius)
+void FishTank::switchHeaterOn()
 {
     if(waterTempCelcius > 25)
     {
