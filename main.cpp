@@ -457,6 +457,7 @@ struct Television
     void switchTvOff(bool onButton);
     int changeTvChannel(int tvChannel);
     void recordTimer();
+
 };
 
 Television::Television() : tvChannel(2){}
@@ -680,6 +681,24 @@ void Producer::playbackRecording()
     std::cout << "playing" << std::endl;
 }
 
+struct WhileLoop
+{
+    int lowNumber = 0;
+    int highNumber = 20;
+
+    void countUp();
+};
+
+void WhileLoop::countUp()
+{
+    while(lowNumber < highNumber)
+    {
+        std::cout << "number equals " << lowNumber << std::endl;
+        lowNumber += 1;
+    }
+    std::cout << " Computer counted !" << std::endl;
+}
+
 #include <iostream>
 int main()
 {
@@ -749,8 +768,9 @@ int main()
 
     std::cout << fishtemp.waterTempCelcius << std::endl;
 
+    WhileLoop finalCount;
 
-
+    finalCount.countUp();
 }
 
 
