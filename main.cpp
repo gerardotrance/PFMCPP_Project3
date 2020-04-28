@@ -502,7 +502,7 @@ void Television::switchTvOff(bool status)
 
 struct FishTank
 {
-    float waterTempCelcius = 25.0f;
+    int waterTempCelcius = 25;
     int heightCm = 30;
     int lengthCm = 90;
     int gallons = 50;
@@ -522,16 +522,30 @@ struct FishTank
     };
 
     void switchLightOn(bool lightOn);
-    void switchHeaterOn(float waterTempCelcius);
+    void switchHeaterOn(int waterTempCelcius);
     void feedFish(int gallons);
     void printTemp();
-    void changeTemp();
+    int tempAlert();
 
     Decor tropical, marine;
 };
 
-FishTank::FishTank() : waterTempCelcius(24.0f), gallons(75){}
+FishTank::FishTank() : waterTempCelcius(24), gallons(75){}
 
+int FishTank::tempAlert()
+{
+    while(waterTempCelcius < 30)
+    {
+        std::cout << "temperature too low " << waterTempCelcius << " degrees celcius"  << std::endl;
+        waterTempCelcius += 1;
+    }
+    while(waterTempCelcius == 30)
+    {
+        std::cout << "safe water temperature " << waterTempCelcius << " degrees celcius" << std::endl;
+        return 0;
+    }
+    return waterTempCelcius;
+}
 void FishTank::printTemp()
 {
     std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;
@@ -544,11 +558,9 @@ void FishTank::switchLightOn(bool lighting)
     std::cout << "light is on" << std::endl;
 }
 
-void FishTank::switchHeaterOn(float waterTemprature)
+void FishTank::switchHeaterOn(int waterTempCelcius)
 {
-    waterTempCelcius = waterTemprature;
-
-    if(waterTempCelcius > 25.0f)
+    if(waterTempCelcius > 25)
     {
         std::cout << "Marine Aquarium" << std::endl;
     }
@@ -728,6 +740,12 @@ int main()
     Cinema seatcounter;
 
     seatcounter.seatCountdown();
+
+    FishTank fishtemp;
+
+    fishtemp.tempAlert();
+
+    std::cout << fishtemp.waterTempCelcius << std::endl;
 
 
 
