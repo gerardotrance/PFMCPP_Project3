@@ -365,7 +365,7 @@ struct Laptop
     std::string password = "password";
     int hardDriveAvailableGb = 256;
     int hardDriveUsed = 512 - hardDriveAvailableGb;
-    int memoryGb = 8; 
+    int memoryGb = 8;
     Laptop();
     
     void receiveInput(bool keyboard, std::string password, int memoryGb);
