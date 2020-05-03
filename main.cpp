@@ -106,6 +106,7 @@ void MidiKeyboard::pitchShift()
         if(pitch >= 12)
         {
             modWheel = 0;
+            std::cout << "pitch shifted up one octave" << std::endl;
         }
     }   
 }
