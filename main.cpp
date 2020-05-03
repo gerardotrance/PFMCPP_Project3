@@ -80,23 +80,35 @@ int main()
 #include<iostream>
 struct MidiKeyboard
 {
-    int keys, pitch;
-    bool pitchWheel, modWheel, keyPressed;
+    int keys, pitch, modWheel;
+    bool pitchWheel, keyPressed, grand;
 
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     void printKeys();
-
-    MidiKeyboard()
-    { 
-        keys = 32;
-        pitchWheel = true;
-        modWheel = true;
-        keyPressed = false;
-        pitch = 0;
-    }
+    void pitchShift();
+    MidiKeyboard();
 };
+
+MidiKeyboard::MidiKeyboard(): keys(32), pitchWheel(true), modWheel(1), keyPressed(false), pitch(0), grand(false){} 
+
+void MidiKeyboard::pitchShift()
+{
+    while(modWheel == 0 )
+    {
+        pitch = 0;       
+    }
+    while(modWheel == 1 )
+    {
+        ++pitch;
+        std::cout << pitch << " tones moved up" << std::endl;
+        if(pitch >= 12)
+        {
+            modWheel = 0;
+        }
+    }   
+}
 
 void MidiKeyboard::printKeys()
 {
@@ -758,6 +770,8 @@ int main()
 
     std::cout << "good to go !" << std::endl;
 
+    // while loops below
+
     Cinema seatcounter;
 
     seatcounter.seatCountdown();
@@ -771,6 +785,10 @@ int main()
     WhileLoop finalCount;
 
     finalCount.countUp();
+
+    MidiKeyboard pitchMove;
+
+    pitchMove.pitchShift();
 }
 
 
