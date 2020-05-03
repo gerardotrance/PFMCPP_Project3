@@ -87,13 +87,13 @@ struct MidiKeyboard
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     void printKeys();
-    void pitchShift();
+    int pitchShift();
     MidiKeyboard();
 };
 
-MidiKeyboard::MidiKeyboard(): keys(32), pitchWheel(true), modWheel(1), keyPressed(false), pitch(0), grand(false){} 
+MidiKeyboard::MidiKeyboard(): keys(32),pitch(0), modWheel(1),pitchWheel(true), keyPressed(false), grand(false){} 
 
-void MidiKeyboard::pitchShift()
+int MidiKeyboard::pitchShift()
 {
     while(modWheel == 0 )
     {
@@ -108,7 +108,8 @@ void MidiKeyboard::pitchShift()
             modWheel = 0;
             std::cout << "pitch shifted up one octave" << std::endl;
         }
-    }   
+    }
+    return 0;   
 }
 
 void MidiKeyboard::printKeys()
