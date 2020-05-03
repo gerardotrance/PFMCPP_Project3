@@ -80,22 +80,38 @@ int main()
 #include<iostream>
 struct MidiKeyboard
 {
-    int keys;
-    bool pitchWheel, modWheel, keyPressed;
+    int keys, pitch, modWheel;
+    bool pitchWheel, keyPressed, grand;
 
     void playMidiNotes(bool keyPressed);
     void changePitch(bool pitchWheel);
     void controlMacros(bool modWheel);
     void printKeys();
-
-    MidiKeyboard()
-    { 
-        keys = 32;
-        pitchWheel = true;
-        modWheel = true;
-        keyPressed = false;
-    }
+    int pitchShift();
+    MidiKeyboard();
 };
+
+MidiKeyboard::MidiKeyboard(): keys(32),pitch(0), modWheel(1),pitchWheel(true), keyPressed(false), grand(false){} 
+
+int MidiKeyboard::pitchShift()
+{
+    while(modWheel == 0 )
+    {
+        pitch = 0;       
+    }
+    while(modWheel == 1 )
+    {
+        ++pitch;
+        std::cout << pitch << " tones moved up" << std::endl;
+        if(pitch >= 12)
+        {
+            modWheel = 0;
+            std::cout << "pitch shifted up one octave" << std::endl;
+        }
+    }
+    return 0;   
+}
+
 void MidiKeyboard::printKeys()
 {
     std::cout << keys << " keys available." << std::endl;
@@ -363,7 +379,7 @@ struct Laptop
     std::string password = "password";
     int hardDriveAvailableGb = 256;
     int hardDriveUsed = 512 - hardDriveAvailableGb;
-    int memoryGb = 8; 
+    int memoryGb = 8;
     Laptop();
     
     void receiveInput(bool keyboard, std::string password, int memoryGb);
@@ -377,8 +393,8 @@ Laptop::Laptop()
     screenResolution = 8000;
     keyboard = true;
     password = "new password";
-    hardDriveAvailableGb = 512;
-    hardDriveUsed = 100;
+    hardDriveAvailableGb = 256;
+    hardDriveUsed = 256;
     memoryGb = 16;    
 }
 
@@ -389,10 +405,12 @@ void Laptop::hardDriveDetails()
     {
         std::cout << "you have used " << hardDriveUsed << " Giga Bytes of storage space." << std::endl;
     }
-    else
+    while(hardDriveUsed > 0)
     {
-        std::cout << "you have used no hard drive space." << std::endl;
-    }  
+        std::cout << " UPDATE PROCESSING " << hardDriveUsed << " GigaBytes used" << std::endl;
+        hardDriveUsed -= 16;
+    }
+    std::cout << "Hard Disk Ready To Use!" << std::endl;    
 }
 
 void Laptop::receiveInput(bool keyboardInput, std::string user, int RAM)
@@ -453,6 +471,7 @@ struct Television
     void switchTvOff(bool onButton);
     int changeTvChannel(int tvChannel);
     void recordTimer();
+
 };
 
 Television::Television() : tvChannel(2){}
@@ -500,7 +519,7 @@ void Television::switchTvOff(bool status)
 
 struct FishTank
 {
-    float waterTempCelcius = 25.0f;
+    int waterTempCelcius = 25;
     int heightCm = 30;
     int lengthCm = 90;
     int gallons = 50;
@@ -520,15 +539,30 @@ struct FishTank
     };
 
     void switchLightOn(bool lightOn);
-    void switchHeaterOn(float waterTempCelcius);
+    void switchHeaterOn();
     void feedFish(int gallons);
     void printTemp();
+    int tempAlert();
 
     Decor tropical, marine;
 };
 
-FishTank::FishTank() : waterTempCelcius(29.0f), gallons(75){}
+FishTank::FishTank() : waterTempCelcius(24), gallons(75){}
 
+int FishTank::tempAlert()
+{
+    while(waterTempCelcius < 30)
+    {
+        std::cout << "temperature too low " << waterTempCelcius << " degrees celcius"  << std::endl;
+        waterTempCelcius += 1;
+    }
+    while(waterTempCelcius == 30)
+    {
+        std::cout << "safe water temperature " << waterTempCelcius << " degrees celcius" << std::endl;
+        return 0;
+    }
+    return waterTempCelcius;
+}
 void FishTank::printTemp()
 {
     std::cout << waterTempCelcius << " is the current temperature in the Aquarium." << std::endl;
@@ -541,11 +575,9 @@ void FishTank::switchLightOn(bool lighting)
     std::cout << "light is on" << std::endl;
 }
 
-void FishTank::switchHeaterOn(float waterTemprature)
+void FishTank::switchHeaterOn()
 {
-    waterTempCelcius = waterTemprature;
-
-    if(waterTempCelcius > 25.0f)
+    if(waterTempCelcius > 25)
     {
         std::cout << "Marine Aquarium" << std::endl;
     }
@@ -585,8 +617,9 @@ struct Cinema
 
     int customerCount();
     int seatCounter();
+    void seatCountdown();
 };
-Cinema::Cinema() : seats(50){}
+Cinema::Cinema() : seats(100){}
 
 int Cinema::customerCount()
 {
@@ -609,6 +642,20 @@ int Cinema::seatCounter()
     return 0;
 }
 
+void Cinema::seatCountdown()
+{
+    while(seats > 0)
+    {
+        std::cout << seats << " seats left!" << std::endl;
+        --seats;
+    }
+    while(seats <= 0)
+    {
+        std::cout << " all seats gone " << std::endl;
+        ++seats;
+        seats = 100;
+    }
+}
 
 struct Producer
 {
@@ -648,6 +695,24 @@ void Producer::playbackRecording()
     std::cout << "playing" << std::endl;
 }
 
+struct WhileLoop
+{
+    int lowNumber = 0;
+    int highNumber = 20;
+
+    void countUp();
+};
+
+void WhileLoop::countUp()
+{
+    while(lowNumber < highNumber)
+    {
+        std::cout << "number equals " << lowNumber << std::endl;
+        lowNumber += 1;
+    }
+    std::cout << " Computer counted !" << std::endl;
+}
+
 #include <iostream>
 int main()
 {
@@ -685,8 +750,6 @@ int main()
 
     multiplex.customerCount();
 
-    multiplex.seatCounter();
-
     Producer artist;
 
     artist.producersName();
@@ -708,7 +771,26 @@ int main()
     std::cout << cubase.audioTracks << std::endl;
 
     std::cout << "good to go !" << std::endl;
-    
+
+    // while loops below
+
+    Cinema seatcounter;
+
+    seatcounter.seatCountdown();
+
+    FishTank fishtemp;
+
+    fishtemp.tempAlert();
+
+    std::cout << fishtemp.waterTempCelcius << std::endl;
+
+    WhileLoop finalCount;
+
+    finalCount.countUp();
+
+    MidiKeyboard pitchMove;
+
+    pitchMove.pitchShift();
 }
 
 
